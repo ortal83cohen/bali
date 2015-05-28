@@ -19,10 +19,5 @@ public class SimpleStaggeredAdapter extends SimpleAdapter {
         } else {
             itemView.setMinimumHeight(0);
         }
-        if (position % 3 == 0) {
-            int height = itemView.getContext().getResources()
-                    .getDimensionPixelSize(R.dimen.card_staggered_height);
-            itemView.setMinimumWidth(height);
-        }
     }
 }

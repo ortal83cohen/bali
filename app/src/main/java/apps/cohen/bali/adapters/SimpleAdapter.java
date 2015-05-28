@@ -1,5 +1,6 @@
 package apps.cohen.bali.adapters;
 
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,12 @@ import apps.cohen.bali.R;
 
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalItemHolder> {
 
-    private ArrayList<GameItem> mItems;
+    private ArrayList<Item> mItems;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
     public SimpleAdapter() {
-        mItems = new ArrayList<GameItem>();
+        mItems = new ArrayList<Item>();
     }
 
     /*
@@ -69,7 +70,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
 
     @Override
     public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
-        GameItem item = mItems.get(position);
+        Item item = mItems.get(position);
 
         itemHolder.setAwayScore(String.valueOf(item.awayScore));
 
@@ -91,13 +92,13 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
         }
     }
 
-    public static class GameItem {
+    public static class Item {
         public String homeTeam;
         public String awayTeam;
         public int homeScore;
         public int awayScore;
 
-        public GameItem(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        public Item(String homeTeam, String awayTeam, int homeScore, int awayScore) {
             this.homeTeam = homeTeam;
             this.awayTeam = awayTeam;
             this.homeScore = homeScore;
@@ -117,7 +118,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
 
             mAdapter = adapter;
 
-
+            ViewCompat.setElevation(itemView, 16);
             mAwayScore = (TextView) itemView.findViewById(R.id.text_score_away);
 
         }
@@ -135,18 +136,18 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
 
     }
 
-    public static GameItem generateDummyItem() {
+    public static Item generateDummyItem() {
         Random random = new Random();
-        return new GameItem("Upset Home", "Upset Away",
+        return new Item("Upset Home", "Upset Away",
                 random.nextInt(100),
                 random.nextInt(100) );
     }
 
-    public static List<GameItem> generateDummyData(int count) {
-        ArrayList<GameItem> items = new ArrayList<GameItem>();
+    public static List<Item> generateDummyData(int count) {
+        ArrayList<Item> items = new ArrayList<Item>();
 
         for (int i=0; i < count; i++) {
-            items.add(new SimpleAdapter.GameItem("Losers", "Winners", i, i+5));
+            items.add(new Item("Losers", "Winners", i, i+5));
         }
 
         return items;
