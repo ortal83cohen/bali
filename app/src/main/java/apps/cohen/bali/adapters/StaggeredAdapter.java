@@ -1,5 +1,6 @@
 package apps.cohen.bali.adapters;
 
+
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,22 +15,19 @@ import java.util.Random;
 
 import apps.cohen.bali.R;
 
-public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalItemHolder> {
+public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.VerticalItemHolder> {
+
 
     private ArrayList<Item> mItems;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public SimpleAdapter() {
+    public StaggeredAdapter() {
         mItems = new ArrayList<Item>();
     }
 
-    /*
-     * A common adapter modification or reset mechanism. As with ListAdapter,
-     * calling notifyDataSetChanged() will trigger the RecyclerView to update
-     * the view. However, this method will not trigger any of the RecyclerView
-     * animation features.
-     */
+
+
     public void setItemCount(int count) {
         mItems.clear();
         mItems.addAll(generateDummyData(count));
@@ -37,23 +35,16 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
         notifyDataSetChanged();
     }
 
-    /*
-     * Inserting a new item at the head of the list. This uses a specialized
-     * RecyclerView method, notifyItemInserted(), to trigger any enabled item
-     * animations in addition to updating the view.
-     */
+
+
     public void addItem(int position) {
         if (position > mItems.size()) return;
-        
+
         mItems.add(position, generateDummyItem());
         notifyItemInserted(position);
     }
 
-    /*
-     * Inserting a new item at the head of the list. This uses a specialized
-     * RecyclerView method, notifyItemRemoved(), to trigger any enabled item
-     * animations in addition to updating the view.
-     */
+
     public void removeItem(int position) {
         if (position >= mItems.size()) return;
 
@@ -69,18 +60,8 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
         return new VerticalItemHolder(root, this);
     }
 
-    @Override
-    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
-        Item item = mItems.get(position);
 
-        itemHolder.setAwayScore(String.valueOf(item.awayScore));
-        if (position == 0 || position == 1) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(0, 280, 0, 0);
-            itemHolder.itemView.setLayoutParams(lp);
-        }
 
-    }
 
     @Override
     public int getItemCount() {
@@ -113,12 +94,12 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
     }
 
     public static class VerticalItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView  mAwayScore;
+        private TextView mAwayScore;
 
 
-        private SimpleAdapter mAdapter;
+        private StaggeredAdapter mAdapter;
 
-        public VerticalItemHolder(View itemView, SimpleAdapter adapter) {
+        public VerticalItemHolder(View itemView, StaggeredAdapter adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
 
@@ -158,4 +139,38 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
 
         return items;
     }
+
+
+    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
+                Item item = mItems.get(position);
+
+        itemHolder.setAwayScore(String.valueOf(item.awayScore));
+        if (position == 0 || position == 1) {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(0, 280, 0, 0);
+            itemHolder.itemView.setLayoutParams(lp);
+        }
+
+        final View itemView = itemHolder.itemView;
+        if (position % 4 == 0) {
+            int height = itemView.getContext().getResources()
+                    .getDimensionPixelSize(R.dimen.card_staggered_height);
+            itemView.setMinimumHeight(height);
+        } else {
+            itemView.setMinimumHeight(0);
+        }
+    }
+
+    //    @Override
+//    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
+//        Item item = mItems.get(position);
+//
+//        itemHolder.setAwayScore(String.valueOf(item.awayScore));
+//        if (position == 0 || position == 1) {
+//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            lp.setMargins(0, 280, 0, 0);
+//            itemHolder.itemView.setLayoutParams(lp);
+//        }
+//
+//    }
 }
