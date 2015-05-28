@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 import apps.cohen.bali.anim.AnimationUtils;
 import apps.cohen.bali.fragments.FragmentDrawer;
-
+import apps.cohen.bali.fragments.VerticalStaggeredGridFragment;
 
 
 public class ActivityMain extends ActionBarActivity {//implements  View.OnClickListener {
@@ -33,15 +34,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     //int corresponding to the number of tabs in our Activity
     public static final int TAB_COUNT = 3;
     //int corresponding to the id of our JobSchedulerService
-    private static final int JOB_ID = 100;
-    //tag associated with the FAB menu button that sorts by name
-    private static final String TAG_SORT_NAME = "sortName";
-    //tag associated with the FAB menu button that sorts by date
-    private static final String TAG_SORT_DATE = "sortDate";
-    //tag associated with the FAB menu button that sorts by ratings
-    private static final String TAG_SORT_RATINGS = "sortRatings";
-    //Run the JobSchedulerService every 2 minutes
-    private static final long POLL_FREQUENCY = 28800000;
 
     private Toolbar mToolbar;
     //a layout grouping the toolbar and the tabs together
@@ -57,6 +49,10 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         //animate the Toolbar when it comes into the picture
         AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, VerticalStaggeredGridFragment.newInstance());
+        ft.commit();
     }
 
     private void setupDrawer() {
