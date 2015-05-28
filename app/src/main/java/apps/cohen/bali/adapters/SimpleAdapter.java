@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,11 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.VerticalIt
         Item item = mItems.get(position);
 
         itemHolder.setAwayScore(String.valueOf(item.awayScore));
+        if (position == 0 || position == 1) {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(0, 280, 0, 0);
+            itemHolder.itemView.setLayoutParams(lp);
+        }
 
     }
 

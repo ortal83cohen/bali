@@ -118,6 +118,7 @@ public abstract class RecyclerFragment extends Fragment implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mAdapter.removeItem(position);
         Toast.makeText(getActivity(),
                 "Clicked: " + position + ", index " + mList.indexOfChild(view),
                 Toast.LENGTH_SHORT).show();
