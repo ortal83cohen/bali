@@ -1,65 +1,45 @@
 package apps.cohen.bali.adapters;
 
 
+import com.squareup.picasso.Picasso;
+
+import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import apps.cohen.bali.R;
+import apps.cohen.bali.model.Category;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ItemHolder> {
 
-
-    private ArrayList<Item> mItems;
+    private Context mContext;
+    private ArrayList<Category> mCategories;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public CategoriesAdapter() {
-        mItems = new ArrayList<Item>();
+    public CategoriesAdapter(Context context) {
+        mContext = context;
+        mCategories = new ArrayList<Category>();
     }
 
-    public static Item generateDummyItem() {
-        Random random = new Random();
-        return new Item("Upset Home", "Upset Away",
-                random.nextInt(100),
-                random.nextInt(100));
-    }
-
-    public static List<Item> generateDummyData(int count) {
-        ArrayList<Item> items = new ArrayList<Item>();
-
-        for (int i = 0; i < count; i++) {
-            items.add(new Item("Losers", "Winners", i, i + 5));
-        }
-
-        return items;
-    }
 
     public void addItem(int position) {
-        if (position > mItems.size()) {
+        if (position > mCategories.size()) {
             return;
         }
 
-        mItems.add(position, generateDummyItem());
+//        mCategories.add(position, new Item());
         notifyItemInserted(position);
     }
 
-    public void removeItem(int position) {
-        if (position >= mItems.size()) {
-            return;
-        }
-
-        mItems.remove(position);
-        notifyItemRemoved(position);
-    }
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup container, int viewType) {
@@ -71,12 +51,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mCategories.size();
     }
 
-    public void setItemCount(int count) {
-        mItems.clear();
-        mItems.addAll(generateDummyData(count));
+    public void setCategories(ArrayList<Category> categories) {
+        mCategories.clear();
+        mCategories = categories;
 
         notifyDataSetChanged();
     }
@@ -93,36 +73,20 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
     }
 
     public void onBindViewHolder(ItemHolder itemHolder, int position) {
-        Item item = mItems.get(position);
+        Category item = mCategories.get(position);
 
-        itemHolder.setAwayScore(String.valueOf(item.awayScore));
+        itemHolder.setName(String.valueOf(item.getName()));
+        itemHolder.setImage(String.valueOf(item.getImage()));
 
         final View itemView = itemHolder.itemView;
 
     }
 
-    public static class Item {
-
-        public String homeTeam;
-
-        public String awayTeam;
-
-        public int homeScore;
-
-        public int awayScore;
-
-        public Item(String homeTeam, String awayTeam, int homeScore, int awayScore) {
-            this.homeTeam = homeTeam;
-            this.awayTeam = awayTeam;
-            this.homeScore = homeScore;
-            this.awayScore = awayScore;
-        }
-    }
-
     public static class ItemHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        private TextView mAwayScore;
+        private TextView mName;
+        private ImageView mImage;
 
 
         private CategoriesAdapter mAdapter;
@@ -134,7 +98,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
             mAdapter = adapter;
 
             ViewCompat.setElevation(itemView, 16);
-            mAwayScore = (TextView) itemView.findViewById(R.id.text_category);
+            mName = (TextView) itemView.findViewById(R.id.text_category);
+            mImage = (ImageView) itemView.findViewById(R.id.image);
 
         }
 
@@ -144,16 +109,22 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
         }
 
 
-        public void setAwayScore(CharSequence awayScore) {
-            mAwayScore.setText(awayScore);
+        public void setName(String s) {
+            mName.setText(s);
         }
-
-
+        public void setImage(String s) {
+            Picasso.with(mAdapter.mContext)
+                    .load(s)
+                    .placeholder(R.drawable.ic_abstract)
+                    .resize(100, 100)
+                    .centerCrop()
+                    .into(mImage);
+        }
     }
 
     //    @Override
 //    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
-//        Item item = mItems.get(position);
+//        Item item = mCategories.get(position);
 //
 //        itemHolder.setAwayScore(String.valueOf(item.awayScore));
 //        if (position == 0 || position == 1) {

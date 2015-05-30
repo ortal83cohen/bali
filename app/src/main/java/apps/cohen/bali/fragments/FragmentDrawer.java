@@ -23,7 +23,7 @@ import apps.cohen.bali.MyApplication;
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterDrawer;
-import apps.cohen.bali.pojo.Information;
+import apps.cohen.bali.model.Information;
 
 public class FragmentDrawer extends Fragment {
 

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import apps.cohen.bali.R;
-import apps.cohen.bali.pojo.Information;
+import apps.cohen.bali.model.Information;
 
 
 public class AdapterDrawer extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

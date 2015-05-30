@@ -4,6 +4,11 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="mangal">מנגל</string>
+    <string name="brit">ברית</string>
+    <string name="marige">חתונה</string>
+    <string name="yomhuledet">יום הולדת</string>
+    <string name="buing_stuff">קניות</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>

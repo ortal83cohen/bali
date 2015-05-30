@@ -13,19 +13,30 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.NumberPickerDialog;
 import apps.cohen.bali.R;
 import apps.cohen.bali.adapters.CategoriesAdapter;
 import apps.cohen.bali.adapters.ItemsAdapter;
+import apps.cohen.bali.model.Category;
+import apps.cohen.bali.model.Item;
+import apps.cohen.bali.utils.Apis;
 
-public class PopularItemsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class PopularItemsFragment extends Fragment  {
 
     private RecyclerView mItemsList;
+
     private RecyclerView mCaragroiesList;
 
     private ItemsAdapter mItemsAdapter;
+
     private CategoriesAdapter mCategoriesAdapter;
+
+    private ArrayList<Category> mCategories;
+
+    private Apis api = new Apis(getActivity());
 
     public static PopularItemsFragment getInstance() {
         return new PopularItemsFragment();
@@ -42,12 +53,23 @@ public class PopularItemsFragment extends Fragment implements AdapterView.OnItem
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_popular, container, false);
 
+
+        mCategories = api.getCategories();
         mCaragroiesList = (RecyclerView) rootView.findViewById(R.id.category_list);
-        mCaragroiesList.setLayoutManager(getCategotiesLayoutManager());
+        mCaragroiesList.setLayoutManager(getCategoriesLayoutManager());
         mCaragroiesList.addItemDecoration(getItemDecoration());
         mCategoriesAdapter = getCategoriesAdapter();
-        mCategoriesAdapter.setItemCount(6);
-        mCategoriesAdapter.setOnItemClickListener(this);
+        mCategoriesAdapter.setCategories(mCategories);
+        mCategoriesAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Category category = mCategories.get(position);
+                ArrayList<Item> lists = api
+                        .getPopularItemsForCategory(category.getId());
+                mItemsAdapter.setItemCount(position);
+            }
+        });
         mCaragroiesList.setAdapter(mCategoriesAdapter);
 
         mItemsList = (RecyclerView) rootView.findViewById(R.id.items_list);
@@ -61,7 +83,17 @@ public class PopularItemsFragment extends Fragment implements AdapterView.OnItem
 
         mItemsAdapter = getItemsAdapter();
         mItemsAdapter.setItemCount(100);
-        mItemsAdapter.setOnItemClickListener(this);
+        mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mItemsAdapter.removeItem(position);
+                    Toast.makeText(getActivity(),
+                            "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
+                            Toast.LENGTH_SHORT).show();
+
+            }
+        });
         mItemsList.setAdapter(mItemsAdapter);
 
         return rootView;
@@ -126,19 +158,13 @@ public class PopularItemsFragment extends Fragment implements AdapterView.OnItem
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        mItemsAdapter.removeItem(position);
-        Toast.makeText(getActivity(),
-                "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
-                Toast.LENGTH_SHORT).show();
-    }
+
 
     protected RecyclerView.LayoutManager getItemsLayoutManager() {
         return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
     }
 
-    protected RecyclerView.LayoutManager getCategotiesLayoutManager() {
+    protected RecyclerView.LayoutManager getCategoriesLayoutManager() {
         return new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
     }
 
@@ -152,6 +178,6 @@ public class PopularItemsFragment extends Fragment implements AdapterView.OnItem
     }
 
     protected CategoriesAdapter getCategoriesAdapter() {
-        return new CategoriesAdapter();
+        return new CategoriesAdapter(getActivity());
     }
 }

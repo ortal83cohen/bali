@@ -1,5 +1,7 @@
 package apps.cohen.bali.activities;
 
+import com.squareup.picasso.Picasso;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -54,7 +56,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         setupTabs();
         //animate the Toolbar when it comes into the picture
 //        AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
-
+        Picasso.with(this).setLoggingEnabled(true);
     }
 
     private void setupTabs() {
