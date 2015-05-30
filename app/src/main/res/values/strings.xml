@@ -9,6 +9,8 @@
     <string name="marige">חתונה</string>
     <string name="yomhuledet">יום הולדת</string>
     <string name="buing_stuff">קניות</string>
+    <string name="new_item_limitation">בשביל ליצור חדש יש צורך להרשם</string>
+    <string name="new_list_limitation">בשביל ליצור רשימה חדשה יש צורך להרשם</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>

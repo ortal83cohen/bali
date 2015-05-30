@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import apps.cohen.bali.App;
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
 import apps.cohen.bali.fragments.ItemListsFragment;
@@ -58,7 +59,18 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 //        AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
         Picasso.with(this).setLoggingEnabled(true);
     }
-
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        App.provide(this).facebook().pause(this);
+//    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+////        getNavigationDrawer().setCurrentTab(NavigationDrawer.TAB_LOCATION_CHOOSER);
+//
+//        App.provide(this).facebook().resume(this);
+//    }
     private void setupTabs() {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));

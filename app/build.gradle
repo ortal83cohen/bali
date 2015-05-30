@@ -28,4 +28,17 @@ dependencies {
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'com.telly:mrvector:0.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // Google Play Services
+    compile 'com.google.android.gms:play-services-maps:7.3.0'
+    compile 'com.google.android.gms:play-services-plus:7.3.0'
+    // App Compat
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    // Networking
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    // Facebook
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
 }
