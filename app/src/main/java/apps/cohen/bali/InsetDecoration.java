@@ -19,7 +19,8 @@ public class InsetDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+            RecyclerView.State state) {
         //We can supply forced insets for each item view here in the Rect
         outRect.set(mInsets, mInsets, mInsets, mInsets);
     }

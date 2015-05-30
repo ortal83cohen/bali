@@ -8,19 +8,19 @@ import android.widget.TextView;
 import apps.cohen.bali.R;
 
 
-public class ItemView extends GridLayout {
+public class CategoryView extends GridLayout {
 
     private TextView mAwayScore;
 
-    public ItemView(Context context) {
+    public CategoryView(Context context) {
         super(context);
     }
 
-    public ItemView(Context context, AttributeSet attrs) {
+    public CategoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CategoryView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

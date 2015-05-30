@@ -10,8 +10,8 @@ public class MyApplication extends Application {
 
 
     public static final String API_KEY_ROTTEN_TOMATOES = "54wzfswsa4qmjg8hjwa64d4c";
-    private static MyApplication sInstance;
 
+    private static MyApplication sInstance;
 
 
     public static MyApplication getInstance() {
@@ -22,13 +22,8 @@ public class MyApplication extends Application {
         return sInstance.getApplicationContext();
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sInstance = this;
-    }
-
-    public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {
+    public static void saveToPreferences(Context context, String preferenceName,
+            String preferenceValue) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context.getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -36,9 +31,16 @@ public class MyApplication extends Application {
         editor.apply();
     }
 
-    public static String readFromPreferences(Context context, String preferenceName, String defaultValue) {
+    public static String readFromPreferences(Context context, String preferenceName,
+            String defaultValue) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context.getApplicationContext());
         return sharedPreferences.getString(preferenceName, defaultValue);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sInstance = this;
     }
 }

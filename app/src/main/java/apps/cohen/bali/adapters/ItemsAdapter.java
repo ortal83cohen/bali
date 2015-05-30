@@ -7,46 +7,55 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import apps.cohen.bali.R;
 
-public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.VerticalItemHolder> {
+public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItemHolder> {
 
 
     private ArrayList<Item> mItems;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public StaggeredAdapter() {
+    public ItemsAdapter() {
         mItems = new ArrayList<Item>();
     }
 
-
-
-    public void setItemCount(int count) {
-        mItems.clear();
-        mItems.addAll(generateDummyData(count));
-
-        notifyDataSetChanged();
+    public static Item generateDummyItem() {
+        Random random = new Random();
+        return new Item("Upset Home", "Upset Away",
+                random.nextInt(100),
+                random.nextInt(100));
     }
 
+    public static List<Item> generateDummyData(int count) {
+        ArrayList<Item> items = new ArrayList<Item>();
 
+        for (int i = 0; i < count; i++) {
+            items.add(new Item("Losers", "Winners", i, i + 5));
+        }
+
+        return items;
+    }
 
     public void addItem(int position) {
-        if (position > mItems.size()) return;
+        if (position > mItems.size()) {
+            return;
+        }
 
         mItems.add(position, generateDummyItem());
         notifyItemInserted(position);
     }
 
-
     public void removeItem(int position) {
-        if (position >= mItems.size()) return;
+        if (position >= mItems.size()) {
+            return;
+        }
 
         mItems.remove(position);
         notifyItemRemoved(position);
@@ -55,17 +64,21 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
     @Override
     public VerticalItemHolder onCreateViewHolder(ViewGroup container, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
-        View root = inflater.inflate(R.layout.view_match_item, container, false);
+        View root = inflater.inflate(R.layout.view_tem, container, false);
 
         return new VerticalItemHolder(root, this);
     }
 
-
-
-
     @Override
     public int getItemCount() {
         return mItems.size();
+    }
+
+    public void setItemCount(int count) {
+        mItems.clear();
+        mItems.addAll(generateDummyData(count));
+
+        notifyDataSetChanged();
     }
 
     public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
@@ -79,10 +92,30 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         }
     }
 
+    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
+        Item item = mItems.get(position);
+
+        itemHolder.setAwayScore(String.valueOf(item.awayScore));
+
+        final View itemView = itemHolder.itemView;
+        if (position % 4 == 0) {
+            int height = itemView.getContext().getResources()
+                    .getDimensionPixelSize(R.dimen.card_staggered_height);
+            itemView.setMinimumHeight(height);
+        } else {
+            itemView.setMinimumHeight(itemView.getContext().getResources()
+                    .getDimensionPixelSize(R.dimen.card_min_width));
+        }
+    }
+
     public static class Item {
+
         public String homeTeam;
+
         public String awayTeam;
+
         public int homeScore;
+
         public int awayScore;
 
         public Item(String homeTeam, String awayTeam, int homeScore, int awayScore) {
@@ -93,13 +126,15 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         }
     }
 
-    public static class VerticalItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class VerticalItemHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+
         private TextView mAwayScore;
 
 
-        private StaggeredAdapter mAdapter;
+        private ItemsAdapter mAdapter;
 
-        public VerticalItemHolder(View itemView, StaggeredAdapter adapter) {
+        public VerticalItemHolder(View itemView, ItemsAdapter adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
 
@@ -121,44 +156,6 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         }
 
 
-    }
-
-    public static Item generateDummyItem() {
-        Random random = new Random();
-        return new Item("Upset Home", "Upset Away",
-                random.nextInt(100),
-                random.nextInt(100) );
-    }
-
-    public static List<Item> generateDummyData(int count) {
-        ArrayList<Item> items = new ArrayList<Item>();
-
-        for (int i=0; i < count; i++) {
-            items.add(new Item("Losers", "Winners", i, i+5));
-        }
-
-        return items;
-    }
-
-
-    public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
-                Item item = mItems.get(position);
-
-        itemHolder.setAwayScore(String.valueOf(item.awayScore));
-        if (position == 0 || position == 1) {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(0, 280, 0, 0);
-            itemHolder.itemView.setLayoutParams(lp);
-        }
-
-        final View itemView = itemHolder.itemView;
-        if (position % 4 == 0) {
-            int height = itemView.getContext().getResources()
-                    .getDimensionPixelSize(R.dimen.card_staggered_height);
-            itemView.setMinimumHeight(height);
-        } else {
-            itemView.setMinimumHeight(0);
-        }
     }
 
     //    @Override

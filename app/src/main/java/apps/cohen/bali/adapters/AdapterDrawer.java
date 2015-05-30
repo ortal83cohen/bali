@@ -16,31 +16,37 @@ import apps.cohen.bali.pojo.Information;
 
 
 public class AdapterDrawer extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<Information> data= Collections.emptyList();
-    private static final int TYPE_HEADER=0;
-    private static final int TYPE_ITEM=1;
+
+    private static final int TYPE_HEADER = 0;
+
+    private static final int TYPE_ITEM = 1;
+
+    List<Information> data = Collections.emptyList();
+
     private LayoutInflater inflater;
+
     private Context context;
-    public AdapterDrawer(Context context, List<Information> data){
-        this.context=context;
-        inflater= LayoutInflater.from(context);
-        this.data=data;
+
+    public AdapterDrawer(Context context, List<Information> data) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
+        this.data = data;
     }
 
-    public void delete(int position){
+    public void delete(int position) {
         data.remove(position);
         notifyItemRemoved(position);
     }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType==TYPE_HEADER){
-            View view=inflater.inflate(R.layout.drawer_header, parent,false);
-            HeaderHolder holder=new HeaderHolder(view);
+        if (viewType == TYPE_HEADER) {
+            View view = inflater.inflate(R.layout.drawer_header, parent, false);
+            HeaderHolder holder = new HeaderHolder(view);
             return holder;
-        }
-        else{
-            View view=inflater.inflate(R.layout.item_drawer, parent,false);
-            ItemHolder holder=new ItemHolder(view);
+        } else {
+            View view = inflater.inflate(R.layout.item_drawer, parent, false);
+            ItemHolder holder = new ItemHolder(view);
             return holder;
         }
 
@@ -48,41 +54,44 @@ public class AdapterDrawer extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        if(position==0){
+        if (position == 0) {
             return TYPE_HEADER;
-        }
-        else {
+        } else {
             return TYPE_ITEM;
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof HeaderHolder ){
+        if (holder instanceof HeaderHolder) {
 
-        }
-        else{
-            ItemHolder itemHolder= (ItemHolder) holder;
-            Information current=data.get(position-1);
+        } else {
+            ItemHolder itemHolder = (ItemHolder) holder;
+            Information current = data.get(position - 1);
             itemHolder.title.setText(current.title);
             itemHolder.icon.setImageResource(current.iconId);
         }
 
     }
+
     @Override
     public int getItemCount() {
-        return data.size()+1;
+        return data.size() + 1;
     }
 
     class ItemHolder extends RecyclerView.ViewHolder {
+
         TextView title;
+
         ImageView icon;
+
         public ItemHolder(View itemView) {
             super(itemView);
-            title= (TextView) itemView.findViewById(R.id.listText);
-            icon= (ImageView) itemView.findViewById(R.id.listIcon);
+            title = (TextView) itemView.findViewById(R.id.listText);
+            icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
+
     class HeaderHolder extends RecyclerView.ViewHolder {
 
         public HeaderHolder(View itemView) {

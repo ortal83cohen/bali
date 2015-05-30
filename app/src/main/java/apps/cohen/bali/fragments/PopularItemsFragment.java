@@ -1,9 +1,9 @@
 package apps.cohen.bali.fragments;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,15 +12,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
+
+import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.NumberPickerDialog;
 import apps.cohen.bali.R;
-import apps.cohen.bali.InsetDecoration;
-import apps.cohen.bali.adapters.StaggeredAdapter;
+import apps.cohen.bali.adapters.CategoriesAdapter;
+import apps.cohen.bali.adapters.ItemsAdapter;
 
-public class VerticalStaggeredGridFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class PopularItemsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-    private RecyclerView mList;
-    private StaggeredAdapter mAdapter;
+    private RecyclerView mItemsList;
+    private RecyclerView mCaragroiesList;
+
+    private ItemsAdapter mItemsAdapter;
+    private CategoriesAdapter mCategoriesAdapter;
+
+    public static PopularItemsFragment getInstance() {
+        return new PopularItemsFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,21 +40,29 @@ public class VerticalStaggeredGridFragment extends Fragment implements AdapterVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_recycler, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_popular, container, false);
 
-        mList = (RecyclerView) rootView.findViewById(R.id.section_list);
-        mList.setLayoutManager(getLayoutManager());
-        mList.addItemDecoration(getItemDecoration());
+        mCaragroiesList = (RecyclerView) rootView.findViewById(R.id.category_list);
+        mCaragroiesList.setLayoutManager(getCategotiesLayoutManager());
+        mCaragroiesList.addItemDecoration(getItemDecoration());
+        mCategoriesAdapter = getCategoriesAdapter();
+        mCategoriesAdapter.setItemCount(6);
+        mCategoriesAdapter.setOnItemClickListener(this);
+        mCaragroiesList.setAdapter(mCategoriesAdapter);
 
-        mList.getItemAnimator().setAddDuration(1000);
-        mList.getItemAnimator().setChangeDuration(1000);
-        mList.getItemAnimator().setMoveDuration(1000);
-        mList.getItemAnimator().setRemoveDuration(1000);
+        mItemsList = (RecyclerView) rootView.findViewById(R.id.items_list);
+        mItemsList.setLayoutManager(getItemsLayoutManager());
+        mItemsList.addItemDecoration(getItemDecoration());
 
-        mAdapter = getAdapter();
-        mAdapter.setItemCount(getDefaultItemCount());
-        mAdapter.setOnItemClickListener(this);
-        mList.setAdapter(mAdapter);
+//        mItemsList.getItemAnimator().setAddDuration(1000);
+//        mItemsList.getItemAnimator().setChangeDuration(1000);
+//        mItemsList.getItemAnimator().setMoveDuration(1000);
+//        mItemsList.getItemAnimator().setRemoveDuration(1000);
+
+        mItemsAdapter = getItemsAdapter();
+        mItemsAdapter.setItemCount(100);
+        mItemsAdapter.setOnItemClickListener(this);
+        mItemsList.setAdapter(mItemsAdapter);
 
         return rootView;
     }
@@ -62,11 +79,11 @@ public class VerticalStaggeredGridFragment extends Fragment implements AdapterVi
 //            case R.id.action_add:
 //                dialog = new NumberPickerDialog(getActivity());
 //                dialog.setTitle("Position to Add");
-//                dialog.setPickerRange(0, mAdapter.getItemCount());
+//                dialog.setPickerRange(0, mItemsAdapter.getItemCount());
 //                dialog.setOnNumberSelectedListener(new NumberPickerDialog.OnNumberSelectedListener() {
 //                    @Override
 //                    public void onNumberSelected(int value) {
-//                        mAdapter.addItem(value);
+//                        mItemsAdapter.addItem(value);
 //                    }
 //                });
 //                dialog.show();
@@ -75,33 +92,33 @@ public class VerticalStaggeredGridFragment extends Fragment implements AdapterVi
 //            case R.id.action_remove:
 //                dialog = new NumberPickerDialog(getActivity());
 //                dialog.setTitle("Position to Remove");
-//                dialog.setPickerRange(0, mAdapter.getItemCount()-1);
+//                dialog.setPickerRange(0, mItemsAdapter.getItemCount()-1);
 //                dialog.setOnNumberSelectedListener(new NumberPickerDialog.OnNumberSelectedListener() {
 //                    @Override
 //                    public void onNumberSelected(int value) {
-//                        mAdapter.removeItem(value);
+//                        mItemsAdapter.removeItem(value);
 //                    }
 //                });
 //                dialog.show();
 //
 //                return true;
 //            case R.id.action_empty:
-//                mAdapter.setItemCount(0);
+//                mItemsAdapter.setItemCount(0);
 //                return true;
 //            case R.id.action_small:
-//                mAdapter.setItemCount(5);
+//                mItemsAdapter.setItemCount(5);
 //                return true;
 //            case R.id.action_medium:
-//                mAdapter.setItemCount(25);
+//                mItemsAdapter.setItemCount(25);
 //                return true;
 //            case R.id.action_large:
-//                mAdapter.setItemCount(196);
+//                mItemsAdapter.setItemCount(196);
 //                return true;
 //            case R.id.action_scroll_zero:
-//                mList.scrollToPosition(0);
+//                mItemsList.scrollToPosition(0);
 //                return true;
 //            case R.id.action_smooth_zero:
-//                mList.smoothScrollToPosition(0);
+//                mItemsList.smoothScrollToPosition(0);
 //                return true;
 //            default:
 //                return super.onOptionsItemSelected(item);
@@ -111,36 +128,30 @@ public class VerticalStaggeredGridFragment extends Fragment implements AdapterVi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        mAdapter.removeItem(position);
+        mItemsAdapter.removeItem(position);
         Toast.makeText(getActivity(),
-                "Clicked: " + position + ", index " + mList.indexOfChild(view),
+                "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
                 Toast.LENGTH_SHORT).show();
     }
 
-    public static VerticalStaggeredGridFragment newInstance() {
-        VerticalStaggeredGridFragment fragment = new VerticalStaggeredGridFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-    protected RecyclerView.LayoutManager getLayoutManager() {
+    protected RecyclerView.LayoutManager getItemsLayoutManager() {
         return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
     }
 
+    protected RecyclerView.LayoutManager getCategotiesLayoutManager() {
+        return new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+    }
 
     protected RecyclerView.ItemDecoration getItemDecoration() {
         return new InsetDecoration(getActivity());
     }
 
 
-    protected int getDefaultItemCount() {
-        return 100;
+    protected ItemsAdapter getItemsAdapter() {
+        return new ItemsAdapter();
     }
 
-
-    protected StaggeredAdapter getAdapter() {
-        return new StaggeredAdapter();
+    protected CategoriesAdapter getCategoriesAdapter() {
+        return new CategoriesAdapter();
     }
 }
