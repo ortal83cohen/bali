@@ -36,7 +36,7 @@ public class PopularItemsFragment extends Fragment  {
 
     private ArrayList<Category> mCategories;
 
-    private Apis api = new Apis(getActivity());
+    private Apis api ;
 
     public static PopularItemsFragment getInstance() {
         return new PopularItemsFragment();
@@ -53,7 +53,7 @@ public class PopularItemsFragment extends Fragment  {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_popular, container, false);
 
-
+        api = new Apis(getActivity());
         mCategories = api.getCategories();
         mCaragroiesList = (RecyclerView) rootView.findViewById(R.id.category_list);
         mCaragroiesList.setLayoutManager(getCategoriesLayoutManager());
