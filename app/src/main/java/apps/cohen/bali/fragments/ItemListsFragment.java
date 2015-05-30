@@ -31,6 +31,12 @@ public class ItemListsFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_items_lists, container, false);
 
+
+
+
+
+
+
         return rootView;
     }
 

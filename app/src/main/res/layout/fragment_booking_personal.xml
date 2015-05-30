@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.etb.hotels.BookingActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:orientation="vertical"
+                  android:paddingBottom="16dp"
+                  android:paddingLeft="32dp"
+                  android:paddingRight="32dp"
+                  android:paddingTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!--<com.facebook.login.widget.LoginButton-->
+                <!--android:id="@+id/facebook_login"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="48dp"-->
+                <!--android:layout_marginRight="4dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Facebook"/>-->
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_login"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:padding="0dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/first_name"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="First name"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/last_name"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Last name"
+            android:inputType="textPersonName"
+            android:nextFocusDown="@+id/email"/>
+
+
+        <AutoCompleteTextView
+            android:id="@+id/email"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:nextFocusDown="@+id/phone_number"/>
+
+        <EditText
+            android:id="@+id/phone_number"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Phone number"
+            android:inputType="phone"
+            android:nextFocusDown="@+id/next_button"/>
+
+    </LinearLayout>
+</ScrollView>
