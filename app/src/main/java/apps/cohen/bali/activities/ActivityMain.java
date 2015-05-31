@@ -1,7 +1,9 @@
 package apps.cohen.bali.activities;
 
+import com.facebook.FacebookSdk;
 import com.squareup.picasso.Picasso;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +23,9 @@ import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
 import apps.cohen.bali.fragments.ItemListsFragment;
 import apps.cohen.bali.fragments.NewItemFragment;
+import apps.cohen.bali.fragments.PersonalInfoFragment;
 import apps.cohen.bali.fragments.PopularItemsFragment;
+import apps.cohen.bali.login.GooglePlusLogin;
 import apps.cohen.bali.views.SlidingTabLayout;
 
 
@@ -48,16 +52,40 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     private ViewPager mPager;
 
     private SlidingTabLayout mTabs;
-
+    private GooglePlusLogin mGooglePlusLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_main);
         setupDrawer();
         setupTabs();
+        mGooglePlusLogin = new GooglePlusLogin(this, savedInstanceState);
         //animate the Toolbar when it comes into the picture
 //        AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
         Picasso.with(this).setLoggingEnabled(true);
+    }
+
+    public GooglePlusLogin getGooglePlusLogin() {
+        return mGooglePlusLogin;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mGooglePlusLogin.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mGooglePlusLogin.stop();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mGooglePlusLogin.onActivityResult(requestCode, resultCode, data);
     }
 //    @Override
 //    protected void onPause() {
@@ -144,7 +172,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                     fragment = ItemListsFragment.newInstance();
                     break;
                 case 2:
-                    fragment = NewItemFragment.newInstance();
+                    fragment = PersonalInfoFragment.newInstance();//= NewItemFragment.newInstance();
                     break;
             }
             return fragment;

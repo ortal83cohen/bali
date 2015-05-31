@@ -17,10 +17,7 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * @author alex
- * @date 2015-05-06
- */
+
 public class FacebookLogin implements FacebookCallback<LoginResult> {
     private final Listener mListener;
     private CallbackManager mFacebookCallback;
@@ -29,14 +26,14 @@ public class FacebookLogin implements FacebookCallback<LoginResult> {
         mListener = listener;
         mFacebookCallback = CallbackManager.Factory.create();
         // Other app specific specialization
-        button.setReadPermissions("public_profile", "email");
-        // If using in a fragment
-        button.setFragment(fragment);
-        button.registerCallback(mFacebookCallback, this);
-
-        if (AccessToken.getCurrentAccessToken() != null) {
-            requestUserInfo(AccessToken.getCurrentAccessToken());
-        }
+//        button.setReadPermissions("public_profile", "email");
+//        // If using in a fragment
+//        button.setFragment(fragment);
+//        button.registerCallback(mFacebookCallback, this);
+//
+//        if (AccessToken.getCurrentAccessToken() != null) {
+//            requestUserInfo(AccessToken.getCurrentAccessToken());
+//        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

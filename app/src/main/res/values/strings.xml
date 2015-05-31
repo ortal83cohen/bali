@@ -1,4 +1,9 @@
 <resources>
+
+
+        <string name="google_api_key">AIzaSyA70K0QVtuCBgsa4bkxanJnmyijSHDYRuI</string>
+        <string name="facebook_app_id">399669236783505</string>
+
     <string name="app_name">bali</string>
 
     <string name="action_settings">Settings</string>
