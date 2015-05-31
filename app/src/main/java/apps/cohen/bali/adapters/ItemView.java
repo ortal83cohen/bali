@@ -27,7 +27,6 @@ public class ItemView extends GridLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mAwayScore = (TextView) findViewById(R.id.text_score_away);
     }
 
     @Override

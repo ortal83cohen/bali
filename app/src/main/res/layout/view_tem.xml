@@ -5,18 +5,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="@dimen/card_min_width"
-        android:padding="8dp"
         android:background="@color/colorAccent">
 
-    <TextView
-            android:id="@+id/text_score_away"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="100"/>
+        <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                   android:src="@color/colorAccent" android:id="@+id/image"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:tag="category" android:id="@+id/text_item"
+                  android:layout_gravity="center"/>
+
 
 
 </apps.cohen.bali.adapters.ItemView>

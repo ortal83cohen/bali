@@ -67,7 +67,7 @@ public class PopularItemsFragment extends Fragment {
                 Category category = mCategories.get(position);
                 ArrayList<Item> lists = api
                         .getPopularItemsForCategory(category.getId());
-                mItemsAdapter.setItemCount(position);
+                mItemsAdapter.setItems(lists);
             }
         });
         mCaragroiesList.setAdapter(mCategoriesAdapter);
@@ -82,7 +82,9 @@ public class PopularItemsFragment extends Fragment {
 //        mItemsList.getItemAnimator().setRemoveDuration(1000);
 
         mItemsAdapter = getItemsAdapter();
-        mItemsAdapter.setItemCount(100);
+        ArrayList<Item> lists = api
+                .getPopularItemsForCategory(0);
+        mItemsAdapter.setItems(lists);
         mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -173,7 +175,7 @@ public class PopularItemsFragment extends Fragment {
 
 
     protected ItemsAdapter getItemsAdapter() {
-        return new ItemsAdapter();
+        return new ItemsAdapter(getActivity());
     }
 
     protected CategoriesAdapter getCategoriesAdapter() {
