@@ -24,7 +24,7 @@ import apps.cohen.bali.model.Category;
 import apps.cohen.bali.model.Item;
 import apps.cohen.bali.utils.Apis;
 
-public class PopularItemsFragment extends Fragment  {
+public class PopularItemsFragment extends Fragment {
 
     private RecyclerView mItemsList;
 
@@ -36,7 +36,7 @@ public class PopularItemsFragment extends Fragment  {
 
     private ArrayList<Category> mCategories;
 
-    private Apis api ;
+    private Apis api;
 
     public static PopularItemsFragment getInstance() {
         return new PopularItemsFragment();
@@ -85,12 +85,12 @@ public class PopularItemsFragment extends Fragment  {
         mItemsAdapter.setItemCount(100);
         mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    mItemsAdapter.removeItem(position);
-                    Toast.makeText(getActivity(),
-                            "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
-                            Toast.LENGTH_SHORT).show();
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mItemsAdapter.removeItem(position);
+                Toast.makeText(getActivity(),
+                        "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
+                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -157,7 +157,6 @@ public class PopularItemsFragment extends Fragment  {
 //        }
         return super.onOptionsItemSelected(item);
     }
-
 
 
     protected RecyclerView.LayoutManager getItemsLayoutManager() {

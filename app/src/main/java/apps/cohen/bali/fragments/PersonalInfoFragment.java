@@ -1,15 +1,17 @@
 package apps.cohen.bali.fragments;
 
-import android.support.v4.app.Fragment;
+import com.google.android.gms.common.SignInButton;
+
+import com.facebook.login.widget.LoginButton;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.common.SignInButton;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
@@ -19,16 +21,23 @@ import apps.cohen.bali.login.GooglePlusLogin;
 import butterknife.ButterKnife;
 
 
-public class PersonalInfoFragment extends Fragment implements FacebookLogin.Listener, GooglePlusLogin.Listener {
+public class PersonalInfoFragment extends Fragment
+        implements FacebookLogin.Listener, GooglePlusLogin.Listener {
+
     AutoCompleteTextView mEmailView;
+
     EditText mFirstNameView;
+
     EditText mLastNameView;
+
     EditText mPhoneNumber;
 
     LoginButton mFacebookLoginButton;
+
     SignInButton mGoogleLoginButton;
 
     private FacebookLogin mFacebookLogin;
+
     private GooglePlusLogin mGooglePlusLogin;
 
     public static PersonalInfoFragment newInstance() {
@@ -38,7 +47,7 @@ public class PersonalInfoFragment extends Fragment implements FacebookLogin.List
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_booking_personal, container, false);
@@ -68,7 +77,7 @@ public class PersonalInfoFragment extends Fragment implements FacebookLogin.List
         mLastNameView = ButterKnife.findById(view, R.id.last_name);
         mPhoneNumber = ButterKnife.findById(view, R.id.phone_number);
 
-//        mFacebookLoginButton = ButterKnife.findById(view, R.id.facebook_login);
+        mFacebookLoginButton = ButterKnife.findById(view, R.id.facebook_login);
         mGoogleLoginButton = ButterKnife.findById(view, R.id.google_login);
     }
 

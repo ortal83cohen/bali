@@ -18,20 +18,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a483ac01-9b66-4a18-b275-44c86966b759" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/adapters/EmailAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/butterknife_6_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/wizardpager_1_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/ItemListsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/ItemListsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_1_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bali.iws" />
@@ -86,21 +78,22 @@
       <file leaf-file-name="ActivityMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="34" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="34" />
+            <state vertical-scroll-proportion="-13.551724">
+              <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
               <folding>
-                <element signature="e#2554#2555#0" expanded="true" />
-                <element signature="e#2593#2594#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3426#3427#0" expanded="true" />
+                <element signature="e#3465#3466#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonalInfoFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonalInfoFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35675675">
-              <caret line="71" column="75" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -132,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.862069">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="29" selection-end-column="45" />
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="29" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -141,16 +134,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="54" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.4738878">
+              <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
               <folding>
                 <element signature="e#1536#1554#0" expanded="true" />
-                <element signature="e#1704#1722#0" expanded="true" />
-                <element signature="e#2064#2089#0" expanded="true" />
-                <element signature="e#2192#2231#0" expanded="true" />
+                <element signature="e#1875#1893#0" expanded="true" />
+                <element signature="e#2001#2019#0" expanded="true" />
+                <element signature="e#2354#2379#0" expanded="true" />
+                <element signature="e#2494#2533#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -159,8 +153,8 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.36">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state vertical-scroll-proportion="-6.8">
+              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -170,7 +164,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="2" selection-end-line="35" selection-end-column="11" />
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1582,7 +1576,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/App.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/MyApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/GooglePlusLogin.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/ObjectGraph.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PageFragmentInterface.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/model/PersonalInfoPage.java" />
@@ -1591,13 +1584,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/autocomplete/CreditCardAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/autocomplete/SpinnerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PageFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/environment_configuration.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/ObjectGraph.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/environment_configuration.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -2104,7 +2098,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3429229" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
@@ -2115,18 +2109,18 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36248562" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37284234" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16075794" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19193155" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796317" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2152,16 +2146,20 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java</url>
-          <line>43</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java</url>
+          <line>117</line>
           <properties />
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
+        <watch expression="inflater.inflate(R.layout.fragment_booking_personal, container, false);" />
+        <watch expression="Base64.encodeToString(md.digest(), Base64.DEFAULT)" />
+      </configuration>
+      <configuration name="Remote">
         <watch expression="inflater.inflate(R.layout.fragment_booking_personal, container, false);" />
       </configuration>
     </watches-manager>
@@ -2449,16 +2447,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/ObjectGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.44">
@@ -2482,14 +2470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24504505">
           <caret line="152" column="3" selection-start-line="152" selection-start-column="3" selection-end-line="152" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/views/SlidingTabLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2518,14 +2498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.36">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/ItemListsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2534,26 +2506,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/views/SlidingTabLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="34" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="34" />
+          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="e#2554#2555#0" expanded="true" />
-            <element signature="e#2593#2594#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/ObjectGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17731959">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/22.1.1/support-v4-22.1.1-sources.jar!/android/support/v4/app/FragmentManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="54" />
+          <caret line="968" column="19" selection-start-line="968" selection-start-column="19" selection-end-line="968" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="e#1536#1554#0" expanded="true" />
-            <element signature="e#1704#1722#0" expanded="true" />
-            <element signature="e#2064#2089#0" expanded="true" />
-            <element signature="e#2192#2231#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/activities/ActivityMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.551724">
+          <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3426#3427#0" expanded="true" />
+            <element signature="e#3465#3466#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2561,7 +2567,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_booking_personal.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.862069">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="29" selection-end-column="45" />
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="29" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -2569,22 +2575,24 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/login/FacebookLogin.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="2" selection-end-line="35" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-6.8">
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/apps/cohen/bali/fragments/PersonalInfoFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35675675">
-          <caret line="71" column="75" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.4738878">
+          <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1536#1554#0" expanded="true" />
+            <element signature="e#1875#1893#0" expanded="true" />
+            <element signature="e#2001#2019#0" expanded="true" />
+            <element signature="e#2354#2379#0" expanded="true" />
+            <element signature="e#2494#2533#0" expanded="true" />
           </folding>
         </state>
       </provider>

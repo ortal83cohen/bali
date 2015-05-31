@@ -21,6 +21,7 @@ import apps.cohen.bali.model.Category;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ItemHolder> {
 
     private Context mContext;
+
     private ArrayList<Category> mCategories;
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
@@ -86,6 +87,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
             implements View.OnClickListener {
 
         private TextView mName;
+
         private ImageView mImage;
 
 
@@ -112,6 +114,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
         public void setName(String s) {
             mName.setText(s);
         }
+
         public void setImage(String s) {
             Picasso.with(mAdapter.mContext)
                     .load(s)

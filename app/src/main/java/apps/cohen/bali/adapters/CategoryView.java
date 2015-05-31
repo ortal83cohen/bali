@@ -3,10 +3,6 @@ package apps.cohen.bali.adapters;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.GridLayout;
-import android.widget.TextView;
-
-import apps.cohen.bali.R;
 
 
 public class CategoryView extends FrameLayout {

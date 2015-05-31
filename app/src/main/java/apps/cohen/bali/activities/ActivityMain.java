@@ -1,9 +1,13 @@
 package apps.cohen.bali.activities;
 
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,17 +16,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import apps.cohen.bali.App;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
 import apps.cohen.bali.fragments.ItemListsFragment;
-import apps.cohen.bali.fragments.NewItemFragment;
 import apps.cohen.bali.fragments.PersonalInfoFragment;
 import apps.cohen.bali.fragments.PopularItemsFragment;
 import apps.cohen.bali.login.GooglePlusLogin;
@@ -52,10 +59,26 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     private ViewPager mPager;
 
     private SlidingTabLayout mTabs;
+
     private GooglePlusLogin mGooglePlusLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "apps.cohen.bali",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
         FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_main);
         setupDrawer();
@@ -69,6 +92,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     public GooglePlusLogin getGooglePlusLogin() {
         return mGooglePlusLogin;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -87,18 +111,23 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         mGooglePlusLogin.onActivityResult(requestCode, resultCode, data);
     }
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        App.provide(this).facebook().pause(this);
-//    }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-////        getNavigationDrawer().setCurrentTab(NavigationDrawer.TAB_LOCATION_CHOOSER);
-//
-//        App.provide(this).facebook().resume(this);
-//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
+    }
+
     private void setupTabs() {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));

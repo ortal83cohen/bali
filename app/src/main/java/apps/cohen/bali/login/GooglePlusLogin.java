@@ -1,13 +1,5 @@
 package apps.cohen.bali.login;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.IntentSender;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -15,29 +7,44 @@ import com.google.android.gms.plus.People;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
 
 /**
  * @author alex
  * @date 2015-05-06
  */
-public class GooglePlusLogin implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, ResultCallback<People.LoadPeopleResult> {
+public class GooglePlusLogin
+        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        View.OnClickListener, ResultCallback<People.LoadPeopleResult> {
 
     /* Request code used to invoke sign in user interactions. */
     private static final int RC_SIGN_IN = 0;
+
     // Request code to use when launching the resolution activity
     private static final int REQUEST_RESOLVE_ERROR = 1001;
+
     private final AppCompatActivity mActivity;
+
     /* Client used to interact with Google APIs. */
     private GoogleApiClient mGoogleApiClient;
+
     /**
      * True if the sign-in button was clicked.  When true, we know to resolve all
      * issues preventing sign-in without waiting.
      */
     private boolean mSignInClicked;
+
     /**
      * True if we are in the process of resolving a ConnectionResult
      */
     private boolean mIntentInProgress;
+
     private Listener mListener;
 
 
@@ -135,12 +142,14 @@ public class GooglePlusLogin implements GoogleApiClient.ConnectionCallbacks, Goo
         Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 
         if (currentPerson != null && mListener != null) {
-            mListener.onGooglePlusLogin(email, currentPerson.getName().getGivenName(), currentPerson.getName().getFamilyName());
+            mListener.onGooglePlusLogin(email, currentPerson.getName().getGivenName(),
+                    currentPerson.getName().getFamilyName());
         }
     }
 
 
     public interface Listener {
+
         void onGooglePlusLogin(String email, String firstName, String lastName);
     }
 

@@ -1,8 +1,8 @@
 <resources>
 
 
-        <string name="google_api_key">AIzaSyA70K0QVtuCBgsa4bkxanJnmyijSHDYRuI</string>
-        <string name="facebook_app_id">399669236783505</string>
+    <string name="google_api_key">AIzaSyA70K0QVtuCBgsa4bkxanJnmyijSHDYRuI</string>
+    <string name="facebook_app_id">582000775276087</string>
 
     <string name="app_name">bali</string>
 
