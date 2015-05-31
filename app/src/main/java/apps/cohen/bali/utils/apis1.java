@@ -12,11 +12,11 @@ import apps.cohen.bali.model.Item;
 /**
  * Created by inbal on 5/30/2015.
  */
-public class Apis {
+public class apis1 {
 
     Context mContext;
 
-    public Apis(Context context) {
+    public apis1(Context context) {
         mContext = context;
     }
 
