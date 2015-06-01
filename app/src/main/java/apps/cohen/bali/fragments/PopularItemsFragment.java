@@ -28,7 +28,7 @@ public class PopularItemsFragment extends Fragment {
 
     private RecyclerView mItemsList;
 
-    private RecyclerView mCaragroiesList;
+    private RecyclerView mCategoriesList;
 
     private ItemsAdapter mItemsAdapter;
 
@@ -55,9 +55,9 @@ public class PopularItemsFragment extends Fragment {
 
         api = new Apis(getActivity());
         mCategories = api.getCategories();
-        mCaragroiesList = (RecyclerView) rootView.findViewById(R.id.category_list);
-        mCaragroiesList.setLayoutManager(getCategoriesLayoutManager());
-        mCaragroiesList.addItemDecoration(getItemDecoration());
+        mCategoriesList = (RecyclerView) rootView.findViewById(R.id.category_list);
+        mCategoriesList.setLayoutManager(getCategoriesLayoutManager());
+        mCategoriesList.addItemDecoration(getItemDecoration());
         mCategoriesAdapter = getCategoriesAdapter();
         mCategoriesAdapter.setCategories(mCategories);
         mCategoriesAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -70,7 +70,7 @@ public class PopularItemsFragment extends Fragment {
                 mItemsAdapter.setItems(lists);
             }
         });
-        mCaragroiesList.setAdapter(mCategoriesAdapter);
+        mCategoriesList.setAdapter(mCategoriesAdapter);
 
         mItemsList = (RecyclerView) rootView.findViewById(R.id.items_list);
         mItemsList.setLayoutManager(getItemsLayoutManager());

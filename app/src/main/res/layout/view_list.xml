@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<apps.cohen.bali.adapters.ListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_margin="@dimen/default_margins"
+        android:layout_height="200sp"
+        android:background="@color/colorDivider"
+        >
+
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+               android:src="@color/colorAccent" android:id="@+id/image"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:tag="category" android:id="@+id/text_category"
+              android:layout_gravity="center"/>
+
+
+</apps.cohen.bali.adapters.ListView>

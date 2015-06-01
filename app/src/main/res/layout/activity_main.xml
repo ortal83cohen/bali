@@ -10,7 +10,7 @@
                   android:layout_height="match_parent"
                   android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
                 android:id="@+id/container_app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -20,12 +20,28 @@
                     android:id="@+id/app_bar"
                     layout="@layout/app_bar"/>
 
-
+            <ImageButton
+                    android:id="@+id/fab_button"
+                    android:transitionName="fab"
+                    android:layout_width="@dimen/fab_size"
+                    android:layout_height="@dimen/fab_size"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_round"
+                    android:stateListAnimator="@anim/fab_anim"
+                    android:elevation="8dp"
+                    android:padding="14dp"
+                    android:layout_marginTop="30dp"
+                    android:scaleType="fitCenter"/>
             <apps.cohen.bali.views.SlidingTabLayout
+                    android:layout_marginTop="80dp"
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-        </LinearLayout>
+
+        </RelativeLayout>
 
         <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
