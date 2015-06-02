@@ -34,15 +34,16 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ItemHolder> 
 
 
     public void addItem(apps.cohen.bali.model.List listItem) {
-mLists.add(listItem);
-       notifyDataSetChanged();
+mLists.add(0,listItem);
+notifyDataSetChanged();
     }
+
 
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup container, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
-        View root = inflater.inflate(R.layout.view_category, container, false);
+        View root = inflater.inflate(R.layout.view_list, container, false);
 
         return new ItemHolder(root, this);
     }
@@ -134,4 +135,6 @@ mLists.add(listItem);
 //        }
 //
 //    }
+
 }
+

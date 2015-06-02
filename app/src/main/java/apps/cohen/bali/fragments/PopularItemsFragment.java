@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -20,7 +22,9 @@ import apps.cohen.bali.NumberPickerDialog;
 import apps.cohen.bali.R;
 import apps.cohen.bali.adapters.CategoriesAdapter;
 import apps.cohen.bali.adapters.ItemsAdapter;
+import apps.cohen.bali.adapters.ListsAdapter;
 import apps.cohen.bali.model.Category;
+import apps.cohen.bali.model.HidingScrollListener;
 import apps.cohen.bali.model.Item;
 import apps.cohen.bali.utils.Apis;
 
@@ -75,6 +79,25 @@ public class PopularItemsFragment extends Fragment {
         mItemsList = (RecyclerView) rootView.findViewById(R.id.items_list);
         mItemsList.setLayoutManager(getItemsLayoutManager());
         mItemsList.addItemDecoration(getItemDecoration());
+
+
+        mItemsList.setOnScrollListener(new HidingScrollListener() {
+            @Override
+            public void onHide() {
+                mCategoriesList.animate().translationY(-mCategoriesList.getHeight())
+                        .setInterpolator(
+                                new AccelerateInterpolator(2));
+            }
+
+            @Override
+            public void onShow() {
+                mCategoriesList.animate().translationY(0)
+                        .setInterpolator(
+                                new DecelerateInterpolator(2));
+
+            }
+        });
+
 
 //        mItemsList.getItemAnimator().setAddDuration(1000);
 //        mItemsList.getItemAnimator().setChangeDuration(1000);

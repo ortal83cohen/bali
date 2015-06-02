@@ -2,8 +2,8 @@
 <apps.cohen.bali.adapters.ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_margin="@dimen/default_margins"
-        android:layout_height="200sp"
+        android:layout_margin="@dimen/min_default_margins"
+        android:layout_height="150sp"
         android:background="@color/colorDivider"
         >
 
