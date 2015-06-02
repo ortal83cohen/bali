@@ -31,6 +31,8 @@ public class Apis {
                 R.drawable.ic_birthday));
         list.add(new Category(4, mContext.getString(R.string.buing_stuff), "",
                 R.drawable.ic_super));
+        list.add(new Category(5, mContext.getString(R.string.bar_mitsva), "",
+                R.drawable.ic_bar_mitsva));
 
         return list;
     }

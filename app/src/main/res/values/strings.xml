@@ -10,10 +10,11 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="mangal">מנגל</string>
-    <string name="brit">ברית</string>
+    <string name="brit">ברית/בריתה</string>
+    <string name="bar_mitsva">בר/בת מצווה</string>
     <string name="marige">חתונה</string>
     <string name="yomhuledet">יום הולדת</string>
-    <string name="buing_stuff">קניות</string>
+    <string name="buing_stuff">סופר</string>
     <string name="new_item_limitation">בשביל ליצור חדש יש צורך להרשם</string>
     <string name="new_list_limitation">בשביל ליצור רשימה חדשה יש צורך להרשם</string>
 

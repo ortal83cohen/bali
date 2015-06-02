@@ -3,9 +3,10 @@ package apps.cohen.bali.adapters;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 
-public class CategoryView extends FrameLayout {
+public class CategoryView extends LinearLayout {
 
     public CategoryView(Context context) {
         super(context);
