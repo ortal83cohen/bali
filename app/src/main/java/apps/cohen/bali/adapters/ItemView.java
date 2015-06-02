@@ -10,7 +10,7 @@ import apps.cohen.bali.R;
 
 public class ItemView extends GridLayout {
 
-    private TextView  mAwayScore;
+    private TextView mAwayScore;
 
     public ItemView(Context context) {
         super(context);
@@ -27,7 +27,6 @@ public class ItemView extends GridLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mAwayScore = (TextView) findViewById(R.id.text_score_away);
     }
 
     @Override

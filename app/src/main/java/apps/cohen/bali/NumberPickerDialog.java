@@ -9,11 +9,8 @@ import android.widget.NumberPicker;
 
 public class NumberPickerDialog extends AlertDialog implements DialogInterface.OnClickListener {
 
-    public interface OnNumberSelectedListener {
-        public void onNumberSelected(int value);
-    }
-
     private NumberPicker mPicker;
+
     private OnNumberSelectedListener mNumberSelectedListener;
 
     public NumberPickerDialog(Context context) {
@@ -25,7 +22,8 @@ public class NumberPickerDialog extends AlertDialog implements DialogInterface.O
         super(context, theme);
     }
 
-    protected NumberPickerDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
+    protected NumberPickerDialog(Context context, boolean cancelable,
+            OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
 
@@ -53,5 +51,10 @@ public class NumberPickerDialog extends AlertDialog implements DialogInterface.O
         if (which == BUTTON_POSITIVE && mNumberSelectedListener != null) {
             mNumberSelectedListener.onNumberSelected(mPicker.getValue());
         }
+    }
+
+    public interface OnNumberSelectedListener {
+
+        public void onNumberSelected(int value);
     }
 }

@@ -10,10 +10,12 @@ import android.animation.PropertyValuesHolder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 
 public class AnimationUtils {
+
     private static int counter = 0;
 
     public static void scaleXY(RecyclerView.ViewHolder holder) {
@@ -26,7 +28,6 @@ public class AnimationUtils {
         ObjectAnimator animator = ObjectAnimator
                 .ofPropertyValuesHolder(holder.itemView, propx, propy);
 
-
         animator.setDuration(800);
         animator.start();
     }
@@ -37,7 +38,6 @@ public class AnimationUtils {
         PropertyValuesHolder propx = PropertyValuesHolder.ofFloat("scaleX", 1);
 
         ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(holder.itemView, propx);
-
 
         animator.setDuration(800);
         animator.start();
@@ -59,39 +59,42 @@ public class AnimationUtils {
         YoYo.with(Techniques.RubberBand)
                 .duration(1000)
                 .playOn(holder.itemView);
-//        AnimatorSet animatorSet = new AnimatorSet();
-//        ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(holder.itemView, "scaleX" ,0.5F, 0.8F, 1.0F);
-//        ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(holder.itemView, "scaleY", 0.5F, 0.8F, 1.0F);
-//        ObjectAnimator animatorTranslateY = ObjectAnimator.ofFloat(holder.itemView, "translationY", goesDown == true ? 300 : -300, 0);
-//        ObjectAnimator animatorTranslateX = ObjectAnimator.ofFloat(holder.itemView, "translationX", -50, 50, -30, 30, -20, 20, -5, 5, 0);
-//        animatorSet.playTogether(animatorTranslateX, animatorTranslateY, animatorScaleX, animatorScaleY);
-//        animatorSet.setInterpolator(new AnticipateInterpolator());
-//        animatorSet.setDuration(1000);
-//        animatorSet.start();
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator animatorScaleX = ObjectAnimator
+                .ofFloat(holder.itemView, "scaleX", 0.5F, 0.8F, 1.0F);
+        ObjectAnimator animatorScaleY = ObjectAnimator
+                .ofFloat(holder.itemView, "scaleY", 0.5F, 0.8F, 1.0F);
+        ObjectAnimator animatorTranslateY = ObjectAnimator
+                .ofFloat(holder.itemView, "translationY", goesDown == true ? 300 : -300, 0);
+        ObjectAnimator animatorTranslateX = ObjectAnimator
+                .ofFloat(holder.itemView, "translationX", -50, 50, -30, 30, -20, 20, -5, 5, 0);
+        animatorSet.playTogether(animatorTranslateX, animatorTranslateY, animatorScaleX,
+                animatorScaleY);
+        animatorSet.setInterpolator(new AnticipateInterpolator());
+        animatorSet.setDuration(1000);
+        animatorSet.start();
 
     }
 
     public static void animateToolbarDroppingDown(View containerToolbar) {
 
         containerToolbar.setRotationX(-90);
-        containerToolbar.setAlpha(0.2F);
+//        containerToolbar.setAlpha(0.2F);
         containerToolbar.setPivotX(0.0F);
         containerToolbar.setPivotY(0.0F);
-        Animator alpha = ObjectAnimator
-                .ofFloat(containerToolbar, "alpha", 0.2F, 0.4F, 0.6F, 0.8F, 1.0F).setDuration(4000);
+//        Animator alpha = ObjectAnimator
+//                .ofFloat(containerToolbar, "alpha", 0.2F, 0.4F, 0.6F, 0.8F, 1.0F).setDuration(4000);
         Animator rotationX = ObjectAnimator
-                .ofFloat(containerToolbar, "rotationX", -90, 60, -45, 45, -10, 30, 0, 20, 0, 5, 0).setDuration(8000);
+                .ofFloat(containerToolbar, "rotationX", -90, 60, -45, 45, -10, 30, 0, 20, 0, 5, 0)
+                .setDuration(8000);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setInterpolator(new DecelerateInterpolator());
-        animatorSet.playTogether(alpha, rotationX);
+        animatorSet.playTogether(rotationX);//alpha,
         animatorSet.start();
     }
 
     /**
      * Courtesy: Vladimir Topalovic
-     *
-     * @param holder
-     * @param goesDown
      */
     public static void animate1(RecyclerView.ViewHolder holder, boolean goesDown) {
         int holderHeight = holder.itemView.getHeight();
@@ -111,9 +114,6 @@ public class AnimationUtils {
 
     /**
      * Courtesy: Vladimir Topalovic
-     *
-     * @param holder
-     * @param goesDown
      */
     public static void animateSunblind(RecyclerView.ViewHolder holder, boolean goesDown) {
         int holderHeight = holder.itemView.getHeight();
@@ -133,9 +133,6 @@ public class AnimationUtils {
 
     /**
      * Courtesy: Vladimir Topalovic
-     *
-     * @param holder
-     * @param goesDown
      */
     public static void animateScatter(RecyclerView.ViewHolder holder, boolean goesDown) {
         counter = ++counter % 4;
@@ -155,7 +152,8 @@ public class AnimationUtils {
                 .ofFloat(holderItemView, "scaleY", counter == 1 || counter == 2 ? 0 : 2, 1f);
         ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(holderItemView, "alpha", 0f, 1f);
         animatorAlpha.setInterpolator(new AccelerateInterpolator(1.5f));
-        animatorSet.playTogether(animatorAlpha, animatorScaleX, animatorScaleY, animatorTranslateX, animatorTranslateY);
+        animatorSet.playTogether(animatorAlpha, animatorScaleX, animatorScaleY, animatorTranslateX,
+                animatorTranslateY);
         animatorSet.setDuration(2000).setInterpolator(new DecelerateInterpolator(1.1f));
         animatorSet.start();
     }
@@ -173,7 +171,6 @@ public class AnimationUtils {
 //
 //        animatorSet.playTogether(rotateY, scaleVertical);
 //        animatorSet.start();
-
 
 //
 }
