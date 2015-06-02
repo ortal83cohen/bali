@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.model.Item;
@@ -76,6 +74,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
     public void onBindViewHolder(VerticalItemHolder itemHolder, int position) {
         Item item = mItems.get(position);
 
+        itemHolder.setBackgroundColor(item.getCategoryId());
         itemHolder.setName(String.valueOf(item.getName()));
         itemHolder.setImage(String.valueOf(item.getImage()));
 
@@ -93,6 +92,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
 
     public static class VerticalItemHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
+
+        private final View mItemView;
+
         private TextView mName;
 
         private ImageView mImage;
@@ -114,6 +116,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
                     .centerCrop()
                     .into(mImage);
         }
+
         public VerticalItemHolder(View itemView, ItemsAdapter adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -121,6 +124,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
             mAdapter = adapter;
 
             ViewCompat.setElevation(itemView, 16);
+            mItemView = itemView;
             mName = (TextView) itemView.findViewById(R.id.text_item);
             mImage = (ImageView) itemView.findViewById(R.id.image);
         }
@@ -131,6 +135,35 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
         }
 
 
+        public void setBackgroundColor(int id) {
+            switch (id) {
+                case 0:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory0));
+                    break;
+                case 1:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory1));
+                    break;
+                case 2:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory2));
+                    break;
+                case 3:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory3));
+                    break;
+                case 4:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory4));
+                    break;
+                case 5:
+                    mItemView.setBackgroundColor(
+                            mAdapter.mContext.getResources().getColor(R.color.colorCategory5));
+                    break;
+            }
+
+        }
     }
 
     //    @Override

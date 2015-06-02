@@ -8,4 +8,12 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorDivider">#B6B6B6</color>
+
+
+    <color name="colorCategory0">#e54f1a</color>
+    <color name="colorCategory1">#cc66ff</color>
+    <color name="colorCategory2">#00c674</color>
+    <color name="colorCategory3">#5536af</color>
+    <color name="colorCategory4">#24b92e</color>
+    <color name="colorCategory5">#608ce3</color>
 </resources>

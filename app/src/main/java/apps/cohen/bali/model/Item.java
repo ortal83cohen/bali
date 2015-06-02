@@ -11,7 +11,10 @@ public class Item {
 
     private String image;
 
-    public Item(int id, String name, String url, String image) {
+    private int mCategoryId;
+
+    public Item(int id,int categoryId, String name, String url, String image) {
+        mCategoryId = categoryId;
         this.id = id;
         this.name = name;
         this.url = url;
@@ -51,5 +54,7 @@ public class Item {
     }
 
 
-
+    public int getCategoryId() {
+        return mCategoryId;
+    }
 }

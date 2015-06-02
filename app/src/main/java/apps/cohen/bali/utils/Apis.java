@@ -58,23 +58,23 @@ public class Apis {
         for (int i=0 ; i<100 ; i++ ){
             switch (id) {
                 case 0:
-                    list.add(new Item(i, mContext.getString(R.string.mangal), "",
+                    list.add(new Item(i,id, mContext.getString(R.string.mangal), "",
                             "http://shtieble.net/news/images/posts/2013/02/header_5312.jpg"));
                     break;
                 case 1:
-                    list.add(new Item(i, mContext.getString(R.string.brit), "",
+                    list.add(new Item(i,id, mContext.getString(R.string.brit), "",
                             "http://www.geektime.co.il/wp-content/uploads/2014/01/shutterstock_129717818.jpg"));
                     break;
                 case 2:
-                    list.add(new Item(i, mContext.getString(R.string.marige), "",
+                    list.add(new Item(i,id, mContext.getString(R.string.marige), "",
                             "https://iplan.co.il/images/front/wedding.png"));
                     break;
                 case 3:
-                    list.add(new Item(i, mContext.getString(R.string.yomhuledet), "",
+                    list.add(new Item(i,id, mContext.getString(R.string.yomhuledet), "",
                             "http://www.1800flowers.co.il/images/itempics/160_large.jpg"));
                     break;
                 case 4:
-                    list.add(new Item(i, mContext.getString(R.string.buing_stuff), "",
+                    list.add(new Item(i,id, mContext.getString(R.string.buing_stuff), "",
                             "http://i.ebayimg.com/00/s/NzAwWDcwMA==/z/5S8AAOxyUrZS7htY/$_12.JPG"));
                     break;
             }
