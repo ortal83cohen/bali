@@ -1,8 +1,6 @@
 package apps.cohen.bali.adapters;
 
 
-import com.squareup.picasso.Picasso;
-
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
@@ -77,7 +75,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
         Category item = mCategories.get(position);
 
         itemHolder.setName(String.valueOf(item.getName()));
-        itemHolder.setImage(String.valueOf(item.getImage()));
+        itemHolder.setImage(item.getImage());
 
         final View itemView = itemHolder.itemView;
 
@@ -115,13 +113,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
             mName.setText(s);
         }
 
-        public void setImage(String s) {
-            Picasso.with(mAdapter.mContext)
-                    .load(s)
-                    .placeholder(R.drawable.ic_abstract)
-                    .resize(100, 100)
-                    .centerCrop()
-                    .into(mImage);
+        public void setImage(int s) {
+            mImage.setImageDrawable(mAdapter.mContext.getResources().getDrawable(s));
         }
     }
 

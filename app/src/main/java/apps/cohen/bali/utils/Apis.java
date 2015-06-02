@@ -22,15 +22,15 @@ public class Apis {
     public ArrayList<Category> getCategories() {
         ArrayList list = new ArrayList();
         list.add(new Category(0, mContext.getString(R.string.mangal), "",
-                "http://shtieble.net/news/images/posts/2013/02/header_5312.jpg"));
+                R.drawable.ic_gril));
         list.add(new Category(1, mContext.getString(R.string.brit), "",
-                "http://www.geektime.co.il/wp-content/uploads/2014/01/shutterstock_129717818.jpg"));
+                R.drawable.ic_brit));
         list.add(new Category(2, mContext.getString(R.string.marige), "",
-                "https://iplan.co.il/images/front/wedding.png"));
+                R.drawable.ic_merige));
         list.add(new Category(3, mContext.getString(R.string.yomhuledet), "",
-                "http://www.1800flowers.co.il/images/itempics/160_large.jpg"));
+                R.drawable.ic_birthday));
         list.add(new Category(4, mContext.getString(R.string.buing_stuff), "",
-                "http://i.ebayimg.com/00/s/NzAwWDcwMA==/z/5S8AAOxyUrZS7htY/$_12.JPG"));
+                R.drawable.ic_super));
 
         return list;
     }

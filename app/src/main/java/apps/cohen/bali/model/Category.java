@@ -11,20 +11,20 @@ public class Category {
 
     private String url;
 
-    private String image;
+    private int image;
 
-    public Category(int id, String name, String url, String image) {
+    public Category(int id, String name, String url, int image) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.image = image;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
