@@ -14,12 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import apps.cohen.bali.R;
-import apps.cohen.bali.model.Category;
 
-public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ItemHolder> {
+public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ItemHolder> {
 
     private Context mContext;
 
@@ -27,7 +25,7 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ItemHolder> 
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public ListsAdapter(Context context) {
+    public AdapterLists(Context context) {
         mContext = context;
         mLists = new ArrayList<apps.cohen.bali.model.List>();
     }
@@ -89,9 +87,9 @@ notifyDataSetChanged();
         private ImageView mImage;
 
 
-        private ListsAdapter mAdapter;
+        private AdapterLists mAdapter;
 
-        public ItemHolder(View itemView, ListsAdapter adapter) {
+        public ItemHolder(View itemView, AdapterLists adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
 

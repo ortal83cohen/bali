@@ -20,30 +20,29 @@ import java.util.ArrayList;
 import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.NumberPickerDialog;
 import apps.cohen.bali.R;
-import apps.cohen.bali.adapters.CategoriesAdapter;
-import apps.cohen.bali.adapters.ItemsAdapter;
-import apps.cohen.bali.adapters.ListsAdapter;
+import apps.cohen.bali.adapters.AdapterCategories;
+import apps.cohen.bali.adapters.AdapterItems;
 import apps.cohen.bali.model.Category;
 import apps.cohen.bali.model.HidingScrollListener;
 import apps.cohen.bali.model.Item;
 import apps.cohen.bali.utils.Apis;
 
-public class PopularItemsFragment extends Fragment {
+public class FragmentPopularItems extends Fragment {
 
     private RecyclerView mItemsList;
 
     private RecyclerView mCategoriesList;
 
-    private ItemsAdapter mItemsAdapter;
+    private AdapterItems mAdapterItems;
 
-    private CategoriesAdapter mCategoriesAdapter;
+    private AdapterCategories mAdapterCategories;
 
     private ArrayList<Category> mCategories;
 
     private Apis api;
 
-    public static PopularItemsFragment getInstance() {
-        return new PopularItemsFragment();
+    public static FragmentPopularItems getInstance() {
+        return new FragmentPopularItems();
     }
 
     @Override
@@ -62,19 +61,19 @@ public class PopularItemsFragment extends Fragment {
         mCategoriesList = (RecyclerView) rootView.findViewById(R.id.category_list);
         mCategoriesList.setLayoutManager(getCategoriesLayoutManager());
         mCategoriesList.addItemDecoration(getItemDecoration());
-        mCategoriesAdapter = getCategoriesAdapter();
-        mCategoriesAdapter.setCategories(mCategories);
-        mCategoriesAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAdapterCategories = getCategoriesAdapter();
+        mAdapterCategories.setCategories(mCategories);
+        mAdapterCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Category category = mCategories.get(position);
                 ArrayList<Item> lists = api
                         .getPopularItemsForCategory(category.getId());
-                mItemsAdapter.setItems(lists);
+                mAdapterItems.setItems(lists);
             }
         });
-        mCategoriesList.setAdapter(mCategoriesAdapter);
+        mCategoriesList.setAdapter(mAdapterCategories);
 
         mItemsList = (RecyclerView) rootView.findViewById(R.id.items_list);
         mItemsList.setLayoutManager(getItemsLayoutManager());
@@ -104,22 +103,22 @@ public class PopularItemsFragment extends Fragment {
 //        mItemsList.getItemAnimator().setMoveDuration(1000);
 //        mItemsList.getItemAnimator().setRemoveDuration(1000);
 
-        mItemsAdapter = getItemsAdapter();
+        mAdapterItems = getItemsAdapter();
         ArrayList<Item> lists = api
                 .getPopularItemsForCategory(0);
-        mItemsAdapter.setItems(lists);
-        mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAdapterItems.setItems(lists);
+        mAdapterItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mItemsAdapter.removeItem(position);
+                mAdapterItems.removeItem(position);
                 Toast.makeText(getActivity(),
                         "Clicked: " + position + ", index " + mItemsList.indexOfChild(view),
                         Toast.LENGTH_SHORT).show();
 
             }
         });
-        mItemsList.setAdapter(mItemsAdapter);
+        mItemsList.setAdapter(mAdapterItems);
 
         return rootView;
     }
@@ -136,11 +135,11 @@ public class PopularItemsFragment extends Fragment {
 //            case R.id.action_add:
 //                dialog = new NumberPickerDialog(getActivity());
 //                dialog.setTitle("Position to Add");
-//                dialog.setPickerRange(0, mItemsAdapter.getItemCount());
+//                dialog.setPickerRange(0, mAdapterItems.getItemCount());
 //                dialog.setOnNumberSelectedListener(new NumberPickerDialog.OnNumberSelectedListener() {
 //                    @Override
 //                    public void onNumberSelected(int value) {
-//                        mItemsAdapter.addItem(value);
+//                        mAdapterItems.addItem(value);
 //                    }
 //                });
 //                dialog.show();
@@ -149,27 +148,27 @@ public class PopularItemsFragment extends Fragment {
 //            case R.id.action_remove:
 //                dialog = new NumberPickerDialog(getActivity());
 //                dialog.setTitle("Position to Remove");
-//                dialog.setPickerRange(0, mItemsAdapter.getItemCount()-1);
+//                dialog.setPickerRange(0, mAdapterItems.getItemCount()-1);
 //                dialog.setOnNumberSelectedListener(new NumberPickerDialog.OnNumberSelectedListener() {
 //                    @Override
 //                    public void onNumberSelected(int value) {
-//                        mItemsAdapter.removeItem(value);
+//                        mAdapterItems.removeItem(value);
 //                    }
 //                });
 //                dialog.show();
 //
 //                return true;
 //            case R.id.action_empty:
-//                mItemsAdapter.setItemCount(0);
+//                mAdapterItems.setItemCount(0);
 //                return true;
 //            case R.id.action_small:
-//                mItemsAdapter.setItemCount(5);
+//                mAdapterItems.setItemCount(5);
 //                return true;
 //            case R.id.action_medium:
-//                mItemsAdapter.setItemCount(25);
+//                mAdapterItems.setItemCount(25);
 //                return true;
 //            case R.id.action_large:
-//                mItemsAdapter.setItemCount(196);
+//                mAdapterItems.setItemCount(196);
 //                return true;
 //            case R.id.action_scroll_zero:
 //                mItemsList.scrollToPosition(0);
@@ -197,11 +196,11 @@ public class PopularItemsFragment extends Fragment {
     }
 
 
-    protected ItemsAdapter getItemsAdapter() {
-        return new ItemsAdapter(getActivity());
+    protected AdapterItems getItemsAdapter() {
+        return new AdapterItems(getActivity());
     }
 
-    protected CategoriesAdapter getCategoriesAdapter() {
-        return new CategoriesAdapter(getActivity());
+    protected AdapterCategories getCategoriesAdapter() {
+        return new AdapterCategories(getActivity());
     }
 }

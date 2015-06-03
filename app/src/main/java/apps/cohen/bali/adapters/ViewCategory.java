@@ -3,19 +3,20 @@ package apps.cohen.bali.adapters;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 
-public class ListView extends FrameLayout {
+public class ViewCategory extends LinearLayout {
 
-    public ListView(Context context) {
+    public ViewCategory(Context context) {
         super(context);
     }
 
-    public ListView(Context context, AttributeSet attrs) {
+    public ViewCategory(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ViewCategory(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

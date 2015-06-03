@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import apps.cohen.bali.R;
 
-public class NewItemFragment extends Fragment {
+public class FragmentNewItem extends Fragment {
 
 
-    public static NewItemFragment newInstance() {
-        NewItemFragment fragment = new NewItemFragment();
+    public static FragmentNewItem newInstance() {
+        FragmentNewItem fragment = new FragmentNewItem();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -29,7 +29,7 @@ public class NewItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_new_item, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
         return rootView;
     }

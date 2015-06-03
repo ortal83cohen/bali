@@ -2,8 +2,6 @@ package apps.cohen.bali.adapters;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 import apps.cohen.bali.R;
 import apps.cohen.bali.model.Category;
 
-public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ItemHolder> {
+public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.ItemHolder> {
 
     private Context mContext;
 
@@ -26,7 +24,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public CategoriesAdapter(Context context) {
+    public AdapterCategories(Context context) {
         mContext = context;
         mCategories = new ArrayList<Category>();
     }
@@ -91,9 +89,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.It
         private ImageView mImage;
 
 
-        private CategoriesAdapter mAdapter;
+        private AdapterCategories mAdapter;
 
-        public ItemHolder(View itemView, CategoriesAdapter adapter) {
+        public ItemHolder(View itemView, AdapterCategories adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
 

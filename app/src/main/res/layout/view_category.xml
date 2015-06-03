@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<apps.cohen.bali.adapters.CategoryView
+<apps.cohen.bali.adapters.ViewCategory
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,4 +13,4 @@
               android:layout_gravity="center"/>
 
 
-</apps.cohen.bali.adapters.CategoryView>
+</apps.cohen.bali.adapters.ViewCategory>

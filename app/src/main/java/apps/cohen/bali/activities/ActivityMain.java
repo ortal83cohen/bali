@@ -33,9 +33,9 @@ import java.security.NoSuchAlgorithmException;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
-import apps.cohen.bali.fragments.ItemListsFragment;
-import apps.cohen.bali.fragments.PersonalInfoFragment;
-import apps.cohen.bali.fragments.PopularItemsFragment;
+import apps.cohen.bali.fragments.FragmentItemLists;
+import apps.cohen.bali.fragments.FragmentPersonalInfo;
+import apps.cohen.bali.fragments.FragmentPopularItems;
 import apps.cohen.bali.login.GooglePlusLogin;
 import apps.cohen.bali.views.SlidingTabLayout;
 
@@ -237,13 +237,13 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 
             switch (position) {
                 case 0:
-                    fragment = PopularItemsFragment.getInstance();
+                    fragment = FragmentPopularItems.getInstance();
                     break;
                 case 1:
-                    fragment = ItemListsFragment.newInstance();
+                    fragment = FragmentItemLists.newInstance();
                     break;
                 case 2:
-                    fragment = PersonalInfoFragment.newInstance();//= NewItemFragment.newInstance();
+                    fragment = FragmentPersonalInfo.newInstance();//= FragmentNewItem.newInstance();
                     break;
             }
             return fragment;

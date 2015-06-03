@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-public class EmailAdapter extends ArrayAdapter<String> {
+public class AdapterEmail extends ArrayAdapter<String> {
 
-    public EmailAdapter(Context context) {
+    public AdapterEmail(Context context) {
         super(context, android.R.layout.simple_list_item_1);
 
         Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import apps.cohen.bali.R;
 import apps.cohen.bali.model.Item;
 
-public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItemHolder> {
+public class AdapterItems extends RecyclerView.Adapter<AdapterItems.VerticalItemHolder> {
 
     private Context mContext;
 
@@ -26,7 +26,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
 
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
-    public ItemsAdapter(Context context) {
+    public AdapterItems(Context context) {
         mContext = context;
         mItems = new ArrayList<Item>();
     }
@@ -102,7 +102,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
         private TextView mAwayScore;
 
 
-        private ItemsAdapter mAdapter;
+        private AdapterItems mAdapter;
 
         public void setName(String s) {
             mName.setText(s);
@@ -117,7 +117,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.VerticalItem
                     .into(mImage);
         }
 
-        public VerticalItemHolder(View itemView, ItemsAdapter adapter) {
+        public VerticalItemHolder(View itemView, AdapterItems adapter) {
             super(itemView);
             itemView.setOnClickListener(this);
 

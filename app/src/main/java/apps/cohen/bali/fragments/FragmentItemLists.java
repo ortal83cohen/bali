@@ -1,9 +1,6 @@
 package apps.cohen.bali.fragments;
 
 
-import com.mikepenz.iconics.typeface.FontAwesome;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -20,14 +17,10 @@ import java.util.ArrayList;
 
 import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.R;
-import apps.cohen.bali.adapters.CategoriesAdapter;
-import apps.cohen.bali.adapters.ItemsAdapter;
-import apps.cohen.bali.adapters.ListsAdapter;
-import apps.cohen.bali.model.Category;
-import apps.cohen.bali.model.Item;
+import apps.cohen.bali.adapters.AdapterLists;
 import apps.cohen.bali.utils.Apis;
 
-public class ItemListsFragment extends Fragment {
+public class FragmentItemLists extends Fragment {
 
     private RecyclerView mRecyclerLists;
 
@@ -35,10 +28,10 @@ public class ItemListsFragment extends Fragment {
 
     private ArrayList<apps.cohen.bali.model.List> mLists;
 
-    private ListsAdapter mListsAdapter;
+    private AdapterLists mListsAdapter;
 
-    public static ItemListsFragment newInstance() {
-        ItemListsFragment fragment = new ItemListsFragment();
+    public static FragmentItemLists newInstance() {
+        FragmentItemLists fragment = new FragmentItemLists();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -61,7 +54,7 @@ public class ItemListsFragment extends Fragment {
         mRecyclerLists.setLayoutManager(
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerLists.addItemDecoration(new InsetDecoration(getActivity()));
-        mListsAdapter = new ListsAdapter(getActivity());
+        mListsAdapter = new AdapterLists(getActivity());
         mListsAdapter.setLists(mLists);
         mListsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

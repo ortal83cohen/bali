@@ -15,13 +15,13 @@ import android.widget.EditText;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
-import apps.cohen.bali.adapters.EmailAdapter;
+import apps.cohen.bali.adapters.AdapterEmail;
 import apps.cohen.bali.login.FacebookLogin;
 import apps.cohen.bali.login.GooglePlusLogin;
 import butterknife.ButterKnife;
 
 
-public class PersonalInfoFragment extends Fragment
+public class FragmentPersonalInfo extends Fragment
         implements FacebookLogin.Listener, GooglePlusLogin.Listener {
 
     AutoCompleteTextView mEmailView;
@@ -40,8 +40,8 @@ public class PersonalInfoFragment extends Fragment
 
     private GooglePlusLogin mGooglePlusLogin;
 
-    public static PersonalInfoFragment newInstance() {
-        PersonalInfoFragment fragment = new PersonalInfoFragment();
+    public static FragmentPersonalInfo newInstance() {
+        FragmentPersonalInfo fragment = new FragmentPersonalInfo();
         return fragment;
     }
 
@@ -53,7 +53,7 @@ public class PersonalInfoFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_booking_personal, container, false);
         injectViews(view);
 
-        mEmailView.setAdapter(new EmailAdapter(getActivity()));
+        mEmailView.setAdapter(new AdapterEmail(getActivity()));
 
 //
 //        mEmailView.setText(pageData.getString(PersonalInfoPage.DATA_EMAIL));
