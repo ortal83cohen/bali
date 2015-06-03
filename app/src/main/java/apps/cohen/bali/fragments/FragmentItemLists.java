@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.R;
+import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterLists;
 import apps.cohen.bali.utils.Apis;
 
@@ -67,9 +68,10 @@ public class FragmentItemLists extends Fragment {
         mFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListsAdapter.addItem(
-                        new apps.cohen.bali.model.List(0, getActivity().getString(R.string.mangal), "",
-                                "http://shtieble.net/news/images/posts/2013/02/header_5312.jpg"));
+                ((ActivityMain)getActivity()).openFragmentEditList();
+//                mListsAdapter.addItem(
+//                        new apps.cohen.bali.model.List(0, getActivity().getString(R.string.mangal), "",
+//                                "http://shtieble.net/news/images/posts/2013/02/header_5312.jpg"));
             }
         });
 

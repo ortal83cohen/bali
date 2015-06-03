@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
+import apps.cohen.bali.fragments.FragmentEditList;
 import apps.cohen.bali.fragments.FragmentItemLists;
 import apps.cohen.bali.fragments.FragmentPersonalInfo;
 import apps.cohen.bali.fragments.FragmentPopularItems;
@@ -53,6 +54,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 
     //int corresponding to the number of tabs in our Activity
     public static final int TAB_COUNT = 3;
+    private static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
     //int corresponding to the id of our JobSchedulerService
 
     private Toolbar mToolbar;
@@ -158,26 +160,26 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         mTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset,
-                    int positionOffsetPixels) {
-                if(position == 1){
+                                       int positionOffsetPixels) {
+                if (position == 1) {
                     mFabButton.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     mFabButton.setVisibility(View.GONE);
                 }
 
-               Log.d(" position ",String.valueOf(position));
-               Log.d(" positionOffset ",String.valueOf(positionOffset));
-               Log.d(" onPageScrolled ",String.valueOf(positionOffsetPixels));
+                Log.d(" position ", String.valueOf(position));
+                Log.d(" positionOffset ", String.valueOf(positionOffset));
+                Log.d(" onPageScrolled ", String.valueOf(positionOffsetPixels));
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("onPageSelected",String.valueOf(position));
+                Log.d("onPageSelected", String.valueOf(position));
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d("StateChanged",String.valueOf(state));
+                Log.d("StateChanged", String.valueOf(state));
             }
         });
         mTabs.setViewPager(mPager);
@@ -220,6 +222,18 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openFragmentEditList() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                .replace(R.id.container, FragmentEditList.newInstance(),
+                        FRAGMENT_EDIT_LIST)
+                .addToBackStack(null)
+                .commit();
+
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {
