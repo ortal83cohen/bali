@@ -220,6 +220,15 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+//
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_LIST);
+ getSupportFragmentManager()
+        .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                .remove( fragment)
+                .commit();
 
         return super.onOptionsItemSelected(item);
     }
