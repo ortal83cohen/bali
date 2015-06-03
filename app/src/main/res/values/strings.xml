@@ -17,6 +17,8 @@
     <string name="buing_stuff">סופר</string>
     <string name="new_item_limitation">בשביל ליצור חדש יש צורך להרשם</string>
     <string name="new_list_limitation">בשביל ליצור רשימה חדשה יש צורך להרשם</string>
+    <string name="new_list">רשימה חדשה</string>
+    <string name="add_list">הוסף רשימה</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>

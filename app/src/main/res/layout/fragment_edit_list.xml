@@ -3,6 +3,9 @@
                 android:layout_height="fill_parent"
     android:background="@android:color/white"
                >
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"/>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:text="new list"/>
