@@ -1,30 +1,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="right"
     android:background="@android:color/white"
-              android:orientation="vertical"
-              android:layout_gravity="right"
-              android:gravity="right"
-               >
+    android:gravity="right"
+    android:orientation="vertical">
+
     <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar"/>
-    <LinearLayout android:layout_width="wrap_content" android:gravity="right" android:orientation="horizontal"
-                  android:layout_height="wrap_content">
+        layout="@layout/app_bar" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+
         <Spinner
-                android:gravity="right"
-                android:id="@+id/category_spinner"
+            android:id="@+id/category_spinner"
+            android:layout_width="match_parent"
 
-                android:layout_width="match_parent"
-                android:layout_height="100dp"/>
+            android:layout_height="100dp"
+            android:gravity="right" />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="בחר קטגוריה" android:layout_marginTop="40dp" android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="בחר קטגוריה"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <EditText
         android:id="@+id/list_name"
         android:layout_width="200dp"
-        android:layout_height="wrap_content" android:hint="תן שם לרשימה שלך"/>
+        android:layout_height="wrap_content"
+        android:ellipsize="start"
+        android:focusable="true"
+        android:gravity="right"
+        android:hint="תן שם לרשימה שלך"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:textAlignment="gravity" />
 
-    </LinearLayout>
+</LinearLayout>

@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,7 +37,8 @@ public class FragmentEditList extends Fragment {
     private ViewGroup mContainerToolbar;
     private Category mSelectedCategory;
     private Context mContext;
-private View rootView;
+    private View mRootView;
+
     public static FragmentEditList newInstance(Context context) {
 
         FragmentEditList fragment = new FragmentEditList();
@@ -54,15 +57,19 @@ private View rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         rootView = inflater.inflate(R.layout.fragment_edit_list, container, false);
-        setupToolbar(rootView);
-
+        mRootView = inflater.inflate(R.layout.fragment_edit_list, container, false);
+        setupToolbar(mRootView);
+        mRootView.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         final Apis apis = new Apis(getActivity());
         final ArrayList<Category> categories = apis.getCategories();
         CategorySpinnerAdapter spinnerAdapter = new CategorySpinnerAdapter(getActivity());
         spinnerAdapter.addItems(categories);
 
-        final Spinner spinner = (Spinner) rootView.findViewById(R.id.category_spinner);
+        final Spinner spinner = (Spinner) mRootView.findViewById(R.id.category_spinner);
         spinner.setAdapter(spinnerAdapter);
 
 
@@ -70,7 +77,7 @@ private View rootView;
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedCategory = categories.get(position);
-                setBackgroundColor(rootView, position);
+                setBackgroundColor(mRootView, position);
 
             }
 
@@ -79,34 +86,47 @@ private View rootView;
 
             }
         });
-        return rootView;
+        return mRootView;
     }
-
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
     public void setBackgroundColor(View mItemView, int id) {
         switch (id) {
             case 0:
                 mItemView.setBackgroundColor(
                         getResources().getColor(R.color.colorCategory0));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory0));
                 break;
             case 1:
                 mItemView.setBackgroundColor(
                         getResources().getColor(R.color.colorCategory1));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory1));
                 break;
             case 2:
                 mItemView.setBackgroundColor(
                         getResources().getColor(R.color.colorCategory2));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory2));
                 break;
             case 3:
                 mItemView.setBackgroundColor(
-                       getResources().getColor(R.color.colorCategory3));
+                        getResources().getColor(R.color.colorCategory3));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory3));
                 break;
             case 4:
                 mItemView.setBackgroundColor(
                         getResources().getColor(R.color.colorCategory4));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory4));
                 break;
             case 5:
                 mItemView.setBackgroundColor(
                         getResources().getColor(R.color.colorCategory5));
+                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorCategory5));
                 break;
         }
     }
@@ -116,6 +136,7 @@ private View rootView;
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
         mToolbar.setTitle(getActivity().getString(R.string.new_list));
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
+        mToolbar.setElevation(12);
         //set the Toolbar as ActionBar
         ((ActivityMain) getActivity()).setSupportActionBar(mToolbar);
         ((ActivityMain) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -129,18 +150,19 @@ private View rootView;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        hideKeyboard();
         int id = item.getItemId();
         if (id == R.id.action_next) {
-            EditText listName = (EditText) rootView.findViewById(R.id.list_name);
-            if(listName.getText().toString().equals("")){
-                Toast.makeText(mContext,mContext.getString(R.string.list_must_have_name),Toast.LENGTH_SHORT).show();
-            }else {
+            EditText listName = (EditText) mRootView.findViewById(R.id.list_name);
+            if (listName.getText().toString().equals("")) {
+                Toast.makeText(mContext, mContext.getString(R.string.list_must_have_name), Toast.LENGTH_SHORT).show();
+            } else {
                 Apis apis = new Apis(mContext);
-                MyApplication.provide(mContext).getMyLists().add(0,new List(0, listName.getText().toString(), mSelectedCategory.getId()));
-                ((ActivityMain)mContext).closeFragmentEditList();
+                MyApplication.provide(mContext).getMyLists().add(0, new List(0, listName.getText().toString(), mSelectedCategory.getId()));
+                ((ActivityMain) mContext).closeFragmentEditList();
             }
-        }else {
-            ((ActivityMain)mContext).closeFragmentEditList();
+        } else {
+            ((ActivityMain) mContext).closeFragmentEditList();
         }
 
         return super.onOptionsItemSelected(item);
