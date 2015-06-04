@@ -34,7 +34,8 @@ import java.security.NoSuchAlgorithmException;
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
 import apps.cohen.bali.fragments.FragmentEditList;
-import apps.cohen.bali.fragments.FragmentItemLists;
+import apps.cohen.bali.fragments.FragmentItemsInList;
+import apps.cohen.bali.fragments.FragmentLists;
 import apps.cohen.bali.fragments.FragmentPersonalInfo;
 import apps.cohen.bali.fragments.FragmentPopularItems;
 import apps.cohen.bali.login.GooglePlusLogin;
@@ -246,8 +247,8 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                         R.anim.pop_exit)
                 .remove(fragment)
                 .commit();
-        FragmentItemLists fragmentItemLists = (FragmentItemLists)getActiveFragment(mPager, 1);
-        fragmentItemLists.notifyListChanged();
+        FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
+        fragmentLists.notifyListChanged();
     }
 
     public Fragment getActiveFragment(ViewPager container, int position) {
@@ -257,6 +258,18 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     private static String makeFragmentName(int viewId, int index) {
         return "android:switcher:" + viewId + ":" + index;
     }
+
+    public void openFragmentItemsInList(View view, int position) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                .replace(R.id.container, FragmentItemsInList.newInstance(),
+                        FRAGMENT_EDIT_LIST)
+                .addToBackStack(null)
+                .commit();
+    }
+
     class MyPagerAdapter extends FragmentPagerAdapter {
 
         private String[] tabText = getResources().getStringArray(R.array.tabs);
@@ -275,7 +288,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                     fragment = FragmentPopularItems.getInstance();
                     break;
                 case 1:
-                    fragment = FragmentItemLists.newInstance();
+                    fragment = FragmentLists.newInstance();
                     break;
                 case 2:
                     fragment = FragmentPersonalInfo.newInstance();//= FragmentNewItem.newInstance();

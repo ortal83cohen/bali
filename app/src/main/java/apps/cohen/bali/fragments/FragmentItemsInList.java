@@ -22,7 +22,7 @@ import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterLists;
 import apps.cohen.bali.utils.Apis;
 
-public class FragmentItemLists extends Fragment {
+public class FragmentItemsInList extends Fragment {
 
     private RecyclerView mRecyclerLists;
 
@@ -32,8 +32,8 @@ public class FragmentItemLists extends Fragment {
 
     private AdapterLists mListsAdapter;
 
-    public static FragmentItemLists newInstance() {
-        FragmentItemLists fragment = new FragmentItemLists();
+    public static FragmentItemsInList newInstance() {
+        FragmentItemsInList fragment = new FragmentItemsInList();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
