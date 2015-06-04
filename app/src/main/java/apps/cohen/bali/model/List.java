@@ -7,6 +7,7 @@ import apps.cohen.bali.R;
  */
 public class List {
 
+    private final int color;
     private int id;
 
     private String name;
@@ -18,24 +19,48 @@ public class List {
         this.id = id;
         this.name = name;
         this.image = getImageForCategories(category);
+        this.color = getBackgroundColor(category);
     }
+
     public int getImageForCategories(int id) {
-        switch (id){
+        switch (id) {
             case 0:
                 return R.drawable.ic_gril;
             case 1:
-                return  R.drawable.ic_brit ;
+                return R.drawable.ic_brit;
             case 2:
                 return R.drawable.ic_merige;
             case 3:
                 return R.drawable.ic_birthday;
             case 4:
                 return R.drawable.ic_super;
-            case 5:   default:
+            case 5:
+            default:
                 return R.drawable.ic_bar_mitsva;
 
         }
     }
+
+    public int getBackgroundColor(int id) {
+        switch (id) {
+            case 0:
+                return (R.color.colorCategory0);
+            case 1:
+                return (R.color.colorCategory1);
+            case 2:
+                return (R.color.colorCategory2);
+            case 3:
+                return (R.color.colorCategory3);
+            case 4:
+                return (R.color.colorCategory4);
+            case 5:
+            default:
+                return (R.color.colorCategory5);
+
+        }
+
+    }
+
     public int getImage() {
         return image;
     }
@@ -60,6 +85,7 @@ public class List {
         this.name = name;
     }
 
-
-
+    public int getColor() {
+        return color;
+    }
 }

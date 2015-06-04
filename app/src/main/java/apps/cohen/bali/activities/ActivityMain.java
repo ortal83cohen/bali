@@ -265,7 +265,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
                         R.anim.pop_exit)
-                .replace(R.id.container, FragmentItemsInList.newInstance(this),
+                .replace(R.id.container, FragmentItemsInList.newInstance(this,  position),
                         FRAGMENT_ITEMS_IN_LIST)
                 .addToBackStack(null)
                 .commit();

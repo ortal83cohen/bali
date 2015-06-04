@@ -20,13 +20,12 @@ import apps.cohen.bali.MyApplication;
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterLists;
-import apps.cohen.bali.utils.Apis;
+
 
 public class FragmentLists extends Fragment {
 
     private RecyclerView mRecyclerLists;
 
-    private Apis api;
 
     private ArrayList<apps.cohen.bali.model.List> mLists;
 
@@ -49,8 +48,6 @@ public class FragmentLists extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_items_lists, container, false);
-
-        api = new Apis(getActivity());
 
         mRecyclerLists = (RecyclerView) rootView.findViewById(R.id.lists);
         mRecyclerLists.setLayoutManager(

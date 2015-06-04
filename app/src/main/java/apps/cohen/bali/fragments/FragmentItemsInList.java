@@ -41,10 +41,13 @@ public class FragmentItemsInList extends Fragment {
     private ViewGroup mContainerToolbar;
     private Context mContext;
     private View mRootView;
+    private int mSelectedItem;
+    private List mItem;
 
-    public static FragmentItemsInList newInstance(Context context) {
+    public static FragmentItemsInList newInstance(Context context, int position) {
         FragmentItemsInList fragment = new FragmentItemsInList();
         fragment.setContext(context);
+        fragment.setSelectedItem(position);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -61,7 +64,7 @@ public class FragmentItemsInList extends Fragment {
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_items_in_list, container, false);
 
-        api = new Apis(getActivity());
+        mItem = MyApplication.provide(getActivity()).getMyLists().get(mSelectedItem);
         setupToolbar(mRootView);
         mRecyclerLists = (RecyclerView) mRootView.findViewById(R.id.items_in_list);
         mRecyclerLists.setLayoutManager(
@@ -104,6 +107,7 @@ public class FragmentItemsInList extends Fragment {
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
         mToolbar.setTitle(getActivity().getString(R.string.items_in_list));
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
+        mToolbar.setBackgroundColor(mContext.getResources().getColor(mItem.getColor()));
         //set the Toolbar as ActionBar
         ((ActivityMain) getActivity()).setSupportActionBar(mToolbar);
         ((ActivityMain) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -133,5 +137,9 @@ public class FragmentItemsInList extends Fragment {
 
     public void setContext(Context context) {
         this.mContext = context;
+    }
+
+    public void setSelectedItem(int selectedItem) {
+        this.mSelectedItem = selectedItem;
     }
 }
