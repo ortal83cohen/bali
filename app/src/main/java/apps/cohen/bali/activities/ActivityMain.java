@@ -232,8 +232,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     public void openFragmentEditList() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                        R.anim.pop_exit)
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
                 .replace(R.id.container, FragmentEditList.newInstance(this),
                         FRAGMENT_EDIT_LIST)
                 .addToBackStack(null)
@@ -244,12 +243,13 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_LIST);
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                        R.anim.pop_exit)
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
                 .remove(fragment)
                 .commit();
         FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
+        setupDrawer();
+        invalidateOptionsMenu();
     }
 
     public Fragment getActiveFragment(ViewPager container, int position) {
@@ -263,8 +263,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     public void openFragmentItemsInList(View view, int position) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                        R.anim.pop_exit)
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
                 .replace(R.id.container, FragmentItemsInList.newInstance(this,  position),
                         FRAGMENT_ITEMS_IN_LIST)
                 .addToBackStack(null)
@@ -275,12 +274,13 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_ITEMS_IN_LIST);
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                        R.anim.pop_exit)
+                .setCustomAnimations( R.anim.enter,R.anim.exit)
                 .remove(fragment)
                 .commit();
         FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
+        setupDrawer();
+        invalidateOptionsMenu();
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {
