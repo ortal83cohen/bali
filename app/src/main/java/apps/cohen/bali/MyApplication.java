@@ -23,10 +23,10 @@ public class MyApplication extends Application implements App.Provider {
     }
 
     public static ObjectGraph provide(Context context) {
-        return ((MyApplication) get(context)).getObjectGraph();
+        return  get(context).getObjectGraph();
     }
 
-    public static Application get(Context context) {
+    public static MyApplication get(Context context) {
         return (MyApplication) context.getApplicationContext();
     }
 
@@ -54,6 +54,7 @@ public class MyApplication extends Application implements App.Provider {
     @Override
     public void onCreate() {
         super.onCreate();
+        mObjectGraph = new ObjectGraph(this);
         sInstance = this;
     }
 }

@@ -1,5 +1,7 @@
 package apps.cohen.bali.model;
 
+import apps.cohen.bali.R;
+
 /**
  * Created by inbal on 5/30/2015.
  */
@@ -9,22 +11,36 @@ public class List {
 
     private String name;
 
-    private String url;
 
-    private String image;
+    private int image;
 
-    public List(int id, String name, String url, String image) {
+    public List(int id, String name, int category) {
         this.id = id;
         this.name = name;
-        this.url = url;
-        this.image = image;
+        this.image = getImageForCategories(category);
     }
+    public int getImageForCategories(int id) {
+        switch (id){
+            case 0:
+                return R.drawable.ic_gril;
+            case 1:
+                return  R.drawable.ic_brit ;
+            case 2:
+                return R.drawable.ic_merige;
+            case 3:
+                return R.drawable.ic_birthday;
+            case 4:
+                return R.drawable.ic_super;
+            case 5:   default:
+                return R.drawable.ic_bar_mitsva;
 
-    public String getImage() {
+        }
+    }
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
@@ -44,13 +60,6 @@ public class List {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
 
 }

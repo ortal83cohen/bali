@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import apps.cohen.bali.InsetDecoration;
+import apps.cohen.bali.MyApplication;
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterLists;
@@ -50,13 +51,13 @@ public class FragmentItemLists extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_items_lists, container, false);
 
         api = new Apis(getActivity());
-        mLists = api.getLists();
+
         mRecyclerLists = (RecyclerView) rootView.findViewById(R.id.lists);
         mRecyclerLists.setLayoutManager(
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerLists.addItemDecoration(new InsetDecoration(getActivity()));
         mListsAdapter = new AdapterLists(getActivity());
-        mListsAdapter.setLists(mLists);
+
         mListsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,19 +69,27 @@ public class FragmentItemLists extends Fragment {
         mFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityMain)getActivity()).openFragmentEditList();
-//                mListsAdapter.addItem(
-//                        new apps.cohen.bali.model.List(0, getActivity().getString(R.string.mangal), "",
-//                                "http://shtieble.net/news/images/posts/2013/02/header_5312.jpg"));
+                ((ActivityMain) getActivity()).openFragmentEditList();
+
             }
         });
 
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mLists = MyApplication.provide(getActivity()).getMyLists();
+        mListsAdapter.setLists(mLists);
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 //        inflater.inflate(R.menu.grid_options, menu);
+    }
+
+    public void notifyListChanged() {
+        mListsAdapter.notifyDataSetChanged();
     }
 }

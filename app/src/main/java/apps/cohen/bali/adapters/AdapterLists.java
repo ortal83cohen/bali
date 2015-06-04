@@ -73,7 +73,7 @@ notifyDataSetChanged();
         apps.cohen.bali.model.List item = mLists.get(position);
 
         itemHolder.setName(String.valueOf(item.getName()));
-        itemHolder.setImage(String.valueOf(item.getImage()));
+        itemHolder.setImage(item.getImage());
 
         final View itemView = itemHolder.itemView;
 
@@ -111,13 +111,14 @@ notifyDataSetChanged();
             mName.setText(s);
         }
 
-        public void setImage(String s) {
-            Picasso.with(mAdapter.mContext)
-                    .load(s)
-                    .placeholder(R.drawable.ic_abstract)
-                    .resize(200, 200)
-                    .centerCrop()
-                    .into(mImage);
+        public void setImage(int image) {
+//            Picasso.with(mAdapter.mContext)
+//                    .load(s)
+//                    .placeholder(R.drawable.ic_abstract)
+//                    .resize(200, 200)
+//                    .centerCrop()
+//                    .into(mImage);
+            mImage.setImageDrawable(mAdapter.mContext.getResources().getDrawable(image));
         }
     }
 

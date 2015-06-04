@@ -54,7 +54,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 
     //int corresponding to the number of tabs in our Activity
     public static final int TAB_COUNT = 3;
-    private static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
+    public static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
     //int corresponding to the id of our JobSchedulerService
 
     private Toolbar mToolbar;
@@ -222,13 +222,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 //        }
 //
 
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_LIST);
- getSupportFragmentManager()
-        .beginTransaction()
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
-                        R.anim.pop_exit)
-                .remove( fragment)
-                .commit();
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -238,13 +232,31 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
                         R.anim.pop_exit)
-                .replace(R.id.container, FragmentEditList.newInstance(),
+                .replace(R.id.container, FragmentEditList.newInstance(this),
                         FRAGMENT_EDIT_LIST)
                 .addToBackStack(null)
                 .commit();
 
     }
+    public void closeFragmentEditList() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_LIST);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                .remove(fragment)
+                .commit();
+        FragmentItemLists fragmentItemLists = (FragmentItemLists)getActiveFragment(mPager, 1);
+        fragmentItemLists.notifyListChanged();
+    }
 
+    public Fragment getActiveFragment(ViewPager container, int position) {
+        String name = makeFragmentName(container.getId(), position);
+        return  getSupportFragmentManager().findFragmentByTag(name);
+    }
+    private static String makeFragmentName(int viewId, int index) {
+        return "android:switcher:" + viewId + ":" + index;
+    }
     class MyPagerAdapter extends FragmentPagerAdapter {
 
         private String[] tabText = getResources().getStringArray(R.array.tabs);
