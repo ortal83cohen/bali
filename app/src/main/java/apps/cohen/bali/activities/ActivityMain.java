@@ -56,6 +56,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     //int corresponding to the number of tabs in our Activity
     public static final int TAB_COUNT = 3;
     public static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
+    private static final String FRAGMENT_ITEMS_IN_LIST = "fragment_items_in_list";
     //int corresponding to the id of our JobSchedulerService
 
     private Toolbar mToolbar;
@@ -264,10 +265,22 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
                         R.anim.pop_exit)
-                .replace(R.id.container, FragmentItemsInList.newInstance(),
-                        FRAGMENT_EDIT_LIST)
+                .replace(R.id.container, FragmentItemsInList.newInstance(this),
+                        FRAGMENT_ITEMS_IN_LIST)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void closeFragmentItemInList() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_ITEMS_IN_LIST);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter,
+                        R.anim.pop_exit)
+                .remove(fragment)
+                .commit();
+        FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
+        fragmentLists.notifyListChanged();
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {

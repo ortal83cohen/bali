@@ -18,6 +18,7 @@
     <string name="new_item_limitation">בשביל ליצור חדש יש צורך להרשם</string>
     <string name="new_list_limitation">בשביל ליצור רשימה חדשה יש צורך להרשם</string>
     <string name="new_list">רשימה חדשה</string>
+    <string name="items_in_list">הפריטים ברשימה שלך</string>
     <string name="add_list">הוסף רשימה</string>
     <string name="list_must_have_name">חייב לתת שם לרשימה</string>
 
