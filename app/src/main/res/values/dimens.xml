@@ -17,7 +17,6 @@
     <dimen name="card_staggered_height">300dp</dimen>
 
 
-
     <!-- Fab button -->
     <dimen name="fab_size">56dp</dimen>
     <dimen name="button_elevation">2dp</dimen>

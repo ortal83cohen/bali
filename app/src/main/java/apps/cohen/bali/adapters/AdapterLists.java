@@ -1,8 +1,6 @@
 package apps.cohen.bali.adapters;
 
 
-import com.squareup.picasso.Picasso;
-
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
@@ -32,10 +30,9 @@ public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ItemHolder> 
 
 
     public void addItem(apps.cohen.bali.model.List listItem) {
-mLists.add(0,listItem);
-notifyDataSetChanged();
+        mLists.add(0, listItem);
+        notifyDataSetChanged();
     }
-
 
 
     @Override

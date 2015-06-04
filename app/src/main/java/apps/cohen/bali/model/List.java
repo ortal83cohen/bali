@@ -8,6 +8,7 @@ import apps.cohen.bali.R;
 public class List {
 
     private final int color;
+
     private int id;
 
     private String name;

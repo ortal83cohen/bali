@@ -5,8 +5,6 @@ import android.util.AttributeSet;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import apps.cohen.bali.R;
-
 
 public class ViewItem extends GridLayout {
 

@@ -1,7 +1,6 @@
 package apps.cohen.bali.fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +28,8 @@ import apps.cohen.bali.utils.Apis;
 
 public class FragmentItemsInList extends Fragment {
 
+    private static final String SELECTED_ITEM = "selected_item";
+
     private RecyclerView mRecyclerLists;
 
     private Apis api;
@@ -36,16 +37,19 @@ public class FragmentItemsInList extends Fragment {
     private ArrayList<apps.cohen.bali.model.List> mLists;
 
     private AdapterItems mItemsAdapter;
+
     private Toolbar mToolbar;
+
     private ViewGroup mContainerToolbar;
-    private Context mContext;
+
     private View mRootView;
+
     private int mSelectedItem;
+
     private List mItem;
 
-    public static FragmentItemsInList newInstance(Context context, int position) {
+    public static FragmentItemsInList newInstance(int position) {
         FragmentItemsInList fragment = new FragmentItemsInList();
-        fragment.setContext(context);
         fragment.setSelectedItem(position);
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -68,6 +72,9 @@ public class FragmentItemsInList extends Fragment {
                 return true;
             }
         });
+        if(savedInstanceState!= null && !savedInstanceState.isEmpty()){
+            mSelectedItem=savedInstanceState.getInt(SELECTED_ITEM);
+        }
         mItem = MyApplication.provide(getActivity()).getMyLists().get(mSelectedItem);
         setupToolbar(mRootView);
         mRecyclerLists = (RecyclerView) mRootView.findViewById(R.id.items_in_list);
@@ -109,17 +116,19 @@ public class FragmentItemsInList extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_items_in_list, menu);
     }
+
     private void setupToolbar(View rootView) {
         mToolbar = (Toolbar) rootView.findViewById(R.id.app_bar);
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
         mToolbar.setTitle(getActivity().getString(R.string.items_in_list));
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
-        mToolbar.setBackgroundColor(mContext.getResources().getColor(mItem.getColor()));
+        mToolbar.setBackgroundColor(getActivity().getResources().getColor(mItem.getColor()));
         mToolbar.setElevation(12);
         ((ActivityMain) getActivity()).setSupportActionBar(mToolbar);
         ((ActivityMain) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -132,22 +141,24 @@ public class FragmentItemsInList extends Fragment {
 //                MyApplication.provide(mContext).getMyLists().add(0,new List(0, listName.getText().toString(), mSelectedCategory.getId()));
 //                ((ActivityMain)mContext).closeFragmentEditList();
 //            }
-        }else {
-            ((ActivityMain)mContext).closeFragmentItemInList();
+        } else {
+            ((ActivityMain) getActivity()).closeFragmentItemInList();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     public void notifyListChanged() {
         mItemsAdapter.notifyDataSetChanged();
-    }
-
-    public void setContext(Context context) {
-        this.mContext = context;
     }
 
     public void setSelectedItem(int selectedItem) {
         this.mSelectedItem = selectedItem;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SELECTED_ITEM, mSelectedItem);
+    }
 }

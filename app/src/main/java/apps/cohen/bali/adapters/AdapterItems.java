@@ -104,6 +104,18 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.VerticalItem
 
         private AdapterItems mAdapter;
 
+        public VerticalItemHolder(View itemView, AdapterItems adapter) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            mAdapter = adapter;
+
+            ViewCompat.setElevation(itemView, 16);
+            mItemView = itemView;
+            mName = (TextView) itemView.findViewById(R.id.text_item);
+            mImage = (ImageView) itemView.findViewById(R.id.image);
+        }
+
         public void setName(String s) {
             mName.setText(s);
         }
@@ -115,18 +127,6 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.VerticalItem
                     .resize(500, 500)
                     .centerCrop()
                     .into(mImage);
-        }
-
-        public VerticalItemHolder(View itemView, AdapterItems adapter) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-
-            mAdapter = adapter;
-
-            ViewCompat.setElevation(itemView, 16);
-            mItemView = itemView;
-            mName = (TextView) itemView.findViewById(R.id.text_item);
-            mImage = (ImageView) itemView.findViewById(R.id.image);
         }
 
         @Override

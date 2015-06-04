@@ -33,16 +33,18 @@ import apps.cohen.bali.utils.Apis;
  * @date 2015-06-03
  */
 public class FragmentEditList extends Fragment {
+
     private Toolbar mToolbar;
+
     private ViewGroup mContainerToolbar;
+
     private Category mSelectedCategory;
-    private Context mContext;
+
     private View mRootView;
 
-    public static FragmentEditList newInstance(Context context) {
+    public static FragmentEditList newInstance() {
 
         FragmentEditList fragment = new FragmentEditList();
-        fragment.setContext(context);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -56,7 +58,7 @@ public class FragmentEditList extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_edit_list, container, false);
         setupToolbar(mRootView);
         mRootView.setOnTouchListener(new View.OnTouchListener() {
@@ -71,7 +73,6 @@ public class FragmentEditList extends Fragment {
 
         final Spinner spinner = (Spinner) mRootView.findViewById(R.id.category_spinner);
         spinner.setAdapter(spinnerAdapter);
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -88,14 +89,18 @@ public class FragmentEditList extends Fragment {
         });
         return mRootView;
     }
+
     private void hideKeyboard() {
         // Check if no view has focus:
         View view = getActivity().getCurrentFocus();
         if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager inputManager = (InputMethodManager) getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
     public void setBackgroundColor(View mItemView, int id) {
         switch (id) {
             case 0:
@@ -155,21 +160,19 @@ public class FragmentEditList extends Fragment {
         if (id == R.id.action_next) {
             EditText listName = (EditText) mRootView.findViewById(R.id.list_name);
             if (listName.getText().toString().equals("")) {
-                Toast.makeText(mContext, mContext.getString(R.string.list_must_have_name), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.list_must_have_name),
+                        Toast.LENGTH_SHORT).show();
             } else {
-                Apis apis = new Apis(mContext);
-                MyApplication.provide(mContext).getMyLists().add(0, new List(0, listName.getText().toString(), mSelectedCategory.getId()));
-                ((ActivityMain) mContext).closeFragmentEditList();
+                Apis apis = new Apis(getActivity());
+                MyApplication.provide(getActivity()).getMyLists().add(0,
+                        new List(0, listName.getText().toString(), mSelectedCategory.getId()));
+                ((ActivityMain) getActivity()).closeFragmentEditList();
             }
         } else {
-            ((ActivityMain) mContext).closeFragmentEditList();
+            ((ActivityMain) getActivity()).closeFragmentEditList();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void setContext(Context context) {
-        this.mContext = context;
-    }
 }

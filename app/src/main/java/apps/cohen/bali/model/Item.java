@@ -13,7 +13,7 @@ public class Item {
 
     private int mCategoryId;
 
-    public Item(int id,int categoryId, String name, String url, String image) {
+    public Item(int id, int categoryId, String name, String url, String image) {
         mCategoryId = categoryId;
         this.id = id;
         this.name = name;

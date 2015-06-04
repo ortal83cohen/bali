@@ -3,8 +3,11 @@ package apps.cohen.bali.model;
 import android.support.v7.widget.RecyclerView;
 
 public abstract class HidingScrollListener extends RecyclerView.OnScrollListener {
+
     private static final int HIDE_THRESHOLD = 20;
+
     private int scrolledDistance = 0;
+
     private boolean controlsVisible = true;
 
     @Override
@@ -21,12 +24,13 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
             scrolledDistance = 0;
         }
 
-        if((controlsVisible && dy>0) || (!controlsVisible && dy<0)) {
+        if ((controlsVisible && dy > 0) || (!controlsVisible && dy < 0)) {
             scrolledDistance += dy;
         }
     }
 
     public abstract void onHide();
+
     public abstract void onShow();
 
 }

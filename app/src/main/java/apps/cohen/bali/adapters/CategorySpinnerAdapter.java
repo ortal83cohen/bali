@@ -48,14 +48,16 @@ public class CategorySpinnerAdapter extends BaseAdapter {
     @Override
     public View getDropDownView(int position, View view, ViewGroup parent) {
         if (view == null || !view.getTag().toString().equals("DROPDOWN")) {
-            view = ((ActivityMain)mContext).getLayoutInflater().inflate(R.layout.toolbar_spinner_item_dropdown, parent, false);
+            view = ((ActivityMain) mContext).getLayoutInflater()
+                    .inflate(R.layout.toolbar_spinner_item_dropdown, parent, false);
             view.setTag("DROPDOWN");
         }
 
         TextView textView = (TextView) view.findViewById(android.R.id.text1);
         textView.setText(getTitle(position));
         ImageView image = (ImageView) view.findViewById(R.id.category_image);
-        image.setImageDrawable(mContext.getResources().getDrawable(mItems.get(position).getImage()));
+        image.setImageDrawable(
+                mContext.getResources().getDrawable(mItems.get(position).getImage()));
         return view;
     }
 
@@ -63,7 +65,7 @@ public class CategorySpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (view == null || !view.getTag().toString().equals("NON_DROPDOWN")) {
-            view = ((ActivityMain)mContext).getLayoutInflater().inflate(R.layout.
+            view = ((ActivityMain) mContext).getLayoutInflater().inflate(R.layout.
                     toolbar_spinner_item_selected, parent, false);
             view.setTag("NON_DROPDOWN");
         }

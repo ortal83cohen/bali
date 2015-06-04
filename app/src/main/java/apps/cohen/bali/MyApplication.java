@@ -23,7 +23,7 @@ public class MyApplication extends Application implements App.Provider {
     }
 
     public static ObjectGraph provide(Context context) {
-        return  get(context).getObjectGraph();
+        return get(context).getObjectGraph();
     }
 
     public static MyApplication get(Context context) {

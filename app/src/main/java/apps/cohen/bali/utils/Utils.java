@@ -28,7 +28,8 @@ public class Utils {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    int fabSize = view.getContext().getResources().getDimensionPixelSize(R.dimen.fab_size);
+                    int fabSize = view.getContext().getResources()
+                            .getDimensionPixelSize(R.dimen.fab_size);
                     outline.setOval(0, 0, fabSize, fabSize);
                 }
             });

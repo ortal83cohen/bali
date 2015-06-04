@@ -55,12 +55,16 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 
     //int corresponding to the number of tabs in our Activity
     public static final int TAB_COUNT = 3;
+
     public static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
+
     private static final String FRAGMENT_ITEMS_IN_LIST = "fragment_items_in_list";
     //int corresponding to the id of our JobSchedulerService
 
     private Toolbar mToolbar;
+
     private ImageButton mFabButton;
+
     //a layout grouping the toolbar and the tabs together
     private ViewGroup mContainerToolbar;
 
@@ -69,6 +73,10 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     private SlidingTabLayout mTabs;
 
     private GooglePlusLogin mGooglePlusLogin;
+
+    private static String makeFragmentName(int viewId, int index) {
+        return "android:switcher:" + viewId + ":" + index;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +117,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         });
     }
 
-
     public GooglePlusLogin getGooglePlusLogin() {
         return mGooglePlusLogin;
     }
@@ -125,7 +132,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         super.onStop();
         mGooglePlusLogin.stop();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,7 +168,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         mTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
+                    int positionOffsetPixels) {
                 if (position == 1) {
                     mFabButton.setVisibility(View.VISIBLE);
                 } else {
@@ -208,7 +214,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         return mContainerToolbar;
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -224,8 +229,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 //        }
 //
 
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -233,12 +236,13 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit)
-                .replace(R.id.container, FragmentEditList.newInstance(this),
+                .replace(R.id.container, FragmentEditList.newInstance(),
                         FRAGMENT_EDIT_LIST)
                 .addToBackStack(null)
                 .commit();
 
     }
+
     public void closeFragmentEditList() {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_LIST);
         getSupportFragmentManager()
@@ -246,7 +250,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                 .setCustomAnimations(R.anim.enter, R.anim.exit)
                 .remove(fragment)
                 .commit();
-        FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
+        FragmentLists fragmentLists = (FragmentLists) getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
         setupDrawer();
         invalidateOptionsMenu();
@@ -254,17 +258,14 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
 
     public Fragment getActiveFragment(ViewPager container, int position) {
         String name = makeFragmentName(container.getId(), position);
-        return  getSupportFragmentManager().findFragmentByTag(name);
-    }
-    private static String makeFragmentName(int viewId, int index) {
-        return "android:switcher:" + viewId + ":" + index;
+        return getSupportFragmentManager().findFragmentByTag(name);
     }
 
     public void openFragmentItemsInList(View view, int position) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit)
-                .replace(R.id.container, FragmentItemsInList.newInstance(this,  position),
+                .replace(R.id.container, FragmentItemsInList.newInstance(position),
                         FRAGMENT_ITEMS_IN_LIST)
                 .addToBackStack(null)
                 .commit();
@@ -274,10 +275,10 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_ITEMS_IN_LIST);
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations( R.anim.enter,R.anim.exit)
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
                 .remove(fragment)
                 .commit();
-        FragmentLists fragmentLists = (FragmentLists)getActiveFragment(mPager, 1);
+        FragmentLists fragmentLists = (FragmentLists) getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
         setupDrawer();
         invalidateOptionsMenu();

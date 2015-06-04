@@ -79,7 +79,6 @@ public class FragmentPopularItems extends Fragment {
         mItemsList.setLayoutManager(getItemsLayoutManager());
         mItemsList.addItemDecoration(getItemDecoration());
 
-
         mItemsList.setOnScrollListener(new HidingScrollListener() {
             @Override
             public void onHide() {
@@ -96,7 +95,6 @@ public class FragmentPopularItems extends Fragment {
 
             }
         });
-
 
 //        mItemsList.getItemAnimator().setAddDuration(1000);
 //        mItemsList.getItemAnimator().setChangeDuration(1000);
