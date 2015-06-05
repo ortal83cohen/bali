@@ -43,6 +43,8 @@ dependencies {
     // Facebook
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
 
+    compile 'com.getbase:floatingactionbutton:1.5.1'
+
     compile 'com.github.techfreak:wizardpager:1.0.0'
     compile 'com.jakewharton:butterknife:6.1.0'
 

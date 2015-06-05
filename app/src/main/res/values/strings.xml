@@ -21,6 +21,9 @@
     <string name="items_in_list">הפריטים ברשימה שלך</string>
     <string name="add_list">הוסף רשימה</string>
     <string name="list_must_have_name">חייב לתת שם לרשימה</string>
+    <string name="invite_friends">הזמן חברים</string>
+    <string name="add_item">הוסף פריט</string>
+    <string name="edit_list">ערוך את הרשימה</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>

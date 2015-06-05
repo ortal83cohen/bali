@@ -44,13 +44,13 @@ public class FragmentItemsInList extends Fragment {
 
     private View mRootView;
 
-    private int mSelectedItem;
+    private int mSelectedItemPosition;
 
-    private List mItem;
+    private List mSelectedItem;
 
     public static FragmentItemsInList newInstance(int position) {
         FragmentItemsInList fragment = new FragmentItemsInList();
-        fragment.setSelectedItem(position);
+        fragment.setSelectedItemPosition(position);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -73,9 +73,9 @@ public class FragmentItemsInList extends Fragment {
             }
         });
         if(savedInstanceState!= null && !savedInstanceState.isEmpty()){
-            mSelectedItem=savedInstanceState.getInt(SELECTED_ITEM);
+            mSelectedItemPosition =savedInstanceState.getInt(SELECTED_ITEM);
         }
-        mItem = MyApplication.provide(getActivity()).getMyLists().get(mSelectedItem);
+        mSelectedItem = MyApplication.provide(getActivity()).getMyLists().get(mSelectedItemPosition);
         setupToolbar(mRootView);
         mRecyclerLists = (RecyclerView) mRootView.findViewById(R.id.items_in_list);
         mRecyclerLists.setLayoutManager(
@@ -85,7 +85,7 @@ public class FragmentItemsInList extends Fragment {
         mLists = MyApplication.provide(getActivity()).getMyLists();
         api = new Apis(getActivity());
         ArrayList<Item> lists = api
-                .getPopularItemsForCategory(mSelectedItem);
+                .getPopularItemsForCategory(mSelectedItem.getId());
         mItemsAdapter.setItems(lists);
         mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,9 +120,9 @@ public class FragmentItemsInList extends Fragment {
     private void setupToolbar(View rootView) {
         mToolbar = (Toolbar) rootView.findViewById(R.id.app_bar);
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
-        mToolbar.setTitle(getActivity().getString(R.string.items_in_list));
+        mToolbar.setTitle(mSelectedItem.getName());
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
-        mToolbar.setBackgroundColor(getActivity().getResources().getColor(mItem.getColor()));
+        mToolbar.setBackgroundColor(getActivity().getResources().getColor(mSelectedItem.getColor()));
         mToolbar.setElevation(12);
         ((ActivityMain) getActivity()).setSupportActionBar(mToolbar);
         ((ActivityMain) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,13 +152,13 @@ public class FragmentItemsInList extends Fragment {
         mItemsAdapter.notifyDataSetChanged();
     }
 
-    public void setSelectedItem(int selectedItem) {
-        this.mSelectedItem = selectedItem;
+    public void setSelectedItemPosition(int selectedItemPosition) {
+        this.mSelectedItemPosition = selectedItemPosition;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(SELECTED_ITEM, mSelectedItem);
+        outState.putInt(SELECTED_ITEM, mSelectedItemPosition);
     }
 }
