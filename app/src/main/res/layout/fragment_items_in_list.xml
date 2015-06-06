@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content" android:layout_margin="20dp"
                     >
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/menu_invite_friends"
+                        android:id="@+id/menu_shere_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         fab:fab_icon="@drawable/ic_person"

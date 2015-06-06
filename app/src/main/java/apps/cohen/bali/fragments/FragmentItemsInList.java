@@ -17,14 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import java.util.ArrayList;
-
 import apps.cohen.bali.InsetDecoration;
 import apps.cohen.bali.MyApplication;
 import apps.cohen.bali.R;
 import apps.cohen.bali.activities.ActivityMain;
 import apps.cohen.bali.adapters.AdapterItems;
-import apps.cohen.bali.model.Item;
 import apps.cohen.bali.model.List;
 import apps.cohen.bali.utils.Apis;
 
@@ -33,10 +30,6 @@ public class FragmentItemsInList extends Fragment {
     private static final String SELECTED_ITEM = "selected_item";
 
     private RecyclerView mRecyclerLists;
-
-    private Apis api;
-
-    private ArrayList<apps.cohen.bali.model.List> mLists;
 
     private AdapterItems mItemsAdapter;
 
@@ -52,7 +45,7 @@ public class FragmentItemsInList extends Fragment {
 
     private FloatingActionButton mMenuEditList;
 
-    private FloatingActionButton mMenuInviteFriends;
+    private FloatingActionButton mMenuShereList;
 
     private FloatingActionButton mMenuAddItem;
 
@@ -88,22 +81,33 @@ public class FragmentItemsInList extends Fragment {
         mRecyclerLists = (RecyclerView) mRootView.findViewById(R.id.items_in_list);
         mMenuEditList = (FloatingActionButton) mRootView.findViewById(R.id.menu_edit_list);
         mMenuAddItem = (FloatingActionButton) mRootView.findViewById(R.id.menu_add_item);
-        mMenuInviteFriends = (FloatingActionButton) mRootView.findViewById(R.id.menu_invite_friends);
+        mMenuShereList = (FloatingActionButton) mRootView.findViewById(R.id.menu_shere_list);
         mMenuEditList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ActivityMain)getActivity()).openFragmentEditList(mSelectedList,mSelectedListPosition);
+                ((ActivityMain) getActivity())
+                        .openFragmentEditList(mSelectedList, mSelectedListPosition);
+            }
+        });
+        mMenuAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ActivityMain) getActivity())
+                        .openFragmentEditItem(mSelectedList,mSelectedListPosition,-1);
+            }
+        });
+        mMenuShereList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ActivityMain) getActivity())
+                        .openFragmentShareList();
             }
         });
         mRecyclerLists.setLayoutManager(
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerLists.addItemDecoration(new InsetDecoration(getActivity()));
         mItemsAdapter = new AdapterItems(getActivity());
-        mLists = MyApplication.provide(getActivity()).getMyLists();
-        api = new Apis(getActivity());
-        ArrayList<Item> lists = api
-                .getPopularItemsForCategory(mSelectedListPosition );
-        mItemsAdapter.setItems(lists);
+        mItemsAdapter.setItems(mSelectedList.getItems());
         mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

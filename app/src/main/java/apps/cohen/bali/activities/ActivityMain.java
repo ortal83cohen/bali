@@ -11,7 +11,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,7 +19,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.TransitionInflater;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -35,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 
 import apps.cohen.bali.R;
 import apps.cohen.bali.fragments.FragmentDrawer;
+import apps.cohen.bali.fragments.FragmentEditItem;
 import apps.cohen.bali.fragments.FragmentEditList;
 import apps.cohen.bali.fragments.FragmentItemsInList;
 import apps.cohen.bali.fragments.FragmentLists;
@@ -62,6 +61,8 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
     public static final String FRAGMENT_EDIT_LIST = "fragment_edit_list";
 
     private static final String FRAGMENT_ITEMS_IN_LIST = "fragment_items_in_list";
+
+    private static final String FRAGMENT_EDIT_ITEM = "fragment_edit_item";
     //int corresponding to the id of our JobSchedulerService
 
     private Toolbar mToolbar;
@@ -207,6 +208,7 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        invalidateOptionsMenu();
     }
 
     public void onDrawerItemClicked(int index) {
@@ -239,7 +241,8 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit)
-                .replace(R.id.container, FragmentEditList.newInstance(selectedList,selectedListPosition),
+                .replace(R.id.container,
+                        FragmentEditList.newInstance(selectedList, selectedListPosition),
                         FRAGMENT_EDIT_LIST)
                 .addToBackStack(null)
                 .commit();
@@ -256,7 +259,6 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         FragmentLists fragmentLists = (FragmentLists) getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
         setupDrawer();
-        invalidateOptionsMenu();
     }
 
     public Fragment getActiveFragment(ViewPager container, int position) {
@@ -284,7 +286,38 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         FragmentLists fragmentLists = (FragmentLists) getActiveFragment(mPager, 1);
         fragmentLists.notifyListChanged();
         setupDrawer();
-        invalidateOptionsMenu();
+    }
+
+    public void openFragmentEditItem(List list,int listPosition,int itemPosition) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
+                .replace(R.id.container, FragmentEditItem.newInstance(list, listPosition,itemPosition),
+                        FRAGMENT_EDIT_ITEM)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void openFragmentShareList() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
+                .replace(R.id.container, FragmentPersonalInfo.newInstance(),
+                        FRAGMENT_ITEMS_IN_LIST)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void closeFragmentEditItem() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_EDIT_ITEM);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit)
+                .remove(fragment)
+                .commit();
+        FragmentLists fragmentLists = (FragmentLists) getActiveFragment(mPager, 1);
+        fragmentLists.notifyListChanged();
+        setupDrawer();
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {

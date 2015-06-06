@@ -121,12 +121,14 @@ public class AdapterItems extends RecyclerView.Adapter<AdapterItems.VerticalItem
         }
 
         public void setImage(String s) {
-            Picasso.with(mAdapter.mContext)
-                    .load(s)
-                    .placeholder(R.drawable.ic_abstract)
-                    .resize(500, 500)
-                    .centerCrop()
-                    .into(mImage);
+            if(s!="") {
+                Picasso.with(mAdapter.mContext)
+                        .load(s)
+                        .placeholder(R.drawable.ic_abstract)
+                        .resize(500, 500)
+                        .centerCrop()
+                        .into(mImage);
+            }
         }
 
         @Override

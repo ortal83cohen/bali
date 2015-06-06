@@ -25,6 +25,8 @@
     <string name="add_item">הוסף פריט</string>
     <string name="edit_list">ערוך את הרשימה</string>
     <string name="save">שמור</string>
+    <string name="new_item">פריט חדש</string>
+    <string name="item_must_have_name">חייב להיות שם לפריט שלך</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>
