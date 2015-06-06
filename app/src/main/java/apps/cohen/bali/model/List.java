@@ -7,7 +7,9 @@ import apps.cohen.bali.R;
  */
 public class List {
 
-    private final int color;
+    private int color;
+
+    private int category;
 
     private int id;
 
@@ -21,6 +23,7 @@ public class List {
         this.name = name;
         this.image = getImageForCategories(category);
         this.color = getBackgroundColor(category);
+        this.category = category;
     }
 
     public int getImageForCategories(int id) {
@@ -88,5 +91,19 @@ public class List {
 
     public int getColor() {
         return color;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+        this.image = getImageForCategories(category);
+        this.color = getBackgroundColor(category);
     }
 }

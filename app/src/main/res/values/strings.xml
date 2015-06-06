@@ -24,6 +24,7 @@
     <string name="invite_friends">הזמן חברים</string>
     <string name="add_item">הוסף פריט</string>
     <string name="edit_list">ערוך את הרשימה</string>
+    <string name="save">שמור</string>
 
     <string-array name="tabs">
         <item>פפופולרי</item>

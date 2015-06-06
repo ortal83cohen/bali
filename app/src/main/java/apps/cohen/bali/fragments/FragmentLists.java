@@ -66,7 +66,7 @@ public class FragmentLists extends Fragment {
         mFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityMain) getActivity()).openFragmentEditList();
+                ((ActivityMain) getActivity()).openFragmentEditList(null, 0);
 
             }
         });

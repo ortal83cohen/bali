@@ -42,11 +42,18 @@ public class FragmentEditList extends Fragment {
 
     private View mRootView;
 
-    public static FragmentEditList newInstance() {
+    private List mList;
+
+    private EditText mListName;
+
+    private Spinner mSpinner;
+
+    private int mListPosition;
+
+    public static FragmentEditList newInstance(List list, int position) {
 
         FragmentEditList fragment = new FragmentEditList();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        fragment.setList(list,position);
         return fragment;
     }
 
@@ -71,10 +78,12 @@ public class FragmentEditList extends Fragment {
         CategorySpinnerAdapter spinnerAdapter = new CategorySpinnerAdapter(getActivity());
         spinnerAdapter.addItems(categories);
 
-        final Spinner spinner = (Spinner) mRootView.findViewById(R.id.category_spinner);
-        spinner.setAdapter(spinnerAdapter);
+         mListName = (EditText) mRootView.findViewById(R.id.list_name);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSpinner = (Spinner) mRootView.findViewById(R.id.category_spinner);
+        mSpinner.setAdapter(spinnerAdapter);
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedCategory = categories.get(position);
@@ -87,7 +96,16 @@ public class FragmentEditList extends Fragment {
 
             }
         });
+        if (mList != null) {
+            setupOldList();
+        }
         return mRootView;
+    }
+
+    private void setupOldList() {
+        mListName.setText(mList.getName());
+
+        mSpinner.setSelection(mList.getCategory());
     }
 
     private void hideKeyboard() {
@@ -139,7 +157,11 @@ public class FragmentEditList extends Fragment {
     private void setupToolbar(View rootView) {
         mToolbar = (Toolbar) rootView.findViewById(R.id.app_bar);
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
-        mToolbar.setTitle(getActivity().getString(R.string.new_list));
+        if(mList == null) {
+            mToolbar.setTitle(getActivity().getString(R.string.new_list));
+        }else {
+            mToolbar.setTitle(mList.getName());
+        }
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
         mToolbar.setElevation(12);
         //set the Toolbar as ActionBar
@@ -150,7 +172,11 @@ public class FragmentEditList extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_edit, menu);
+        if(mList == null) {
+            inflater.inflate(R.menu.menu_new, menu);
+        }else {
+            inflater.inflate(R.menu.menu_edit, menu);
+        }
     }
 
     @Override
@@ -158,15 +184,22 @@ public class FragmentEditList extends Fragment {
         hideKeyboard();
         int id = item.getItemId();
         if (id == R.id.action_next) {
-            EditText listName = (EditText) mRootView.findViewById(R.id.list_name);
-            if (listName.getText().toString().equals("")) {
+
+            if (mListName.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), getActivity().getString(R.string.list_must_have_name),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Apis apis = new Apis(getActivity());
-                MyApplication.provide(getActivity()).getMyLists().add(0,
-                        new List(0, listName.getText().toString(), mSelectedCategory.getId()));
-                ((ActivityMain) getActivity()).closeFragmentEditList();
+                if(mList == null) {
+                    Apis apis = new Apis(getActivity());
+                    MyApplication.provide(getActivity()).getMyLists().add(0,
+                            new List(0, mListName.getText().toString(), mSelectedCategory.getId()));
+                    ((ActivityMain) getActivity()).closeFragmentEditList();
+                }else {
+                    mList.setName(mListName.getText().toString());
+                    mList.setCategory(mSelectedCategory.getId());
+                    ((ActivityMain) getActivity()).closeFragmentEditList();
+                    ((ActivityMain) getActivity()).openFragmentItemsInList(null,mListPosition);
+                }
             }
         } else {
             ((ActivityMain) getActivity()).closeFragmentEditList();
@@ -175,4 +208,8 @@ public class FragmentEditList extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setList(List list, int position) {
+        mList = list;
+        mListPosition = position;
+    }
 }

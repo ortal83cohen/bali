@@ -41,6 +41,7 @@ import apps.cohen.bali.fragments.FragmentLists;
 import apps.cohen.bali.fragments.FragmentPersonalInfo;
 import apps.cohen.bali.fragments.FragmentPopularItems;
 import apps.cohen.bali.login.GooglePlusLogin;
+import apps.cohen.bali.model.List;
 import apps.cohen.bali.views.SlidingTabLayout;
 
 
@@ -234,11 +235,11 @@ public class ActivityMain extends ActionBarActivity {//implements  View.OnClickL
         return super.onOptionsItemSelected(item);
     }
 
-    public void openFragmentEditList() {
+    public void openFragmentEditList(List selectedList, int selectedListPosition) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit)
-                .replace(R.id.container, FragmentEditList.newInstance(),
+                .replace(R.id.container, FragmentEditList.newInstance(selectedList,selectedListPosition),
                         FRAGMENT_EDIT_LIST)
                 .addToBackStack(null)
                 .commit();

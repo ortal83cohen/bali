@@ -1,6 +1,8 @@
 package apps.cohen.bali.fragments;
 
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -44,13 +46,19 @@ public class FragmentItemsInList extends Fragment {
 
     private View mRootView;
 
-    private int mSelectedItemPosition;
+    private int mSelectedListPosition;
 
-    private List mSelectedItem;
+    private List mSelectedList;
+
+    private FloatingActionButton mMenuEditList;
+
+    private FloatingActionButton mMenuInviteFriends;
+
+    private FloatingActionButton mMenuAddItem;
 
     public static FragmentItemsInList newInstance(int position) {
         FragmentItemsInList fragment = new FragmentItemsInList();
-        fragment.setSelectedItemPosition(position);
+        fragment.setSelectedListPosition(position);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -73,11 +81,20 @@ public class FragmentItemsInList extends Fragment {
             }
         });
         if(savedInstanceState!= null && !savedInstanceState.isEmpty()){
-            mSelectedItemPosition =savedInstanceState.getInt(SELECTED_ITEM);
+            mSelectedListPosition =savedInstanceState.getInt(SELECTED_ITEM);
         }
-        mSelectedItem = MyApplication.provide(getActivity()).getMyLists().get(mSelectedItemPosition);
+        mSelectedList = MyApplication.provide(getActivity()).getMyLists().get(mSelectedListPosition);
         setupToolbar(mRootView);
         mRecyclerLists = (RecyclerView) mRootView.findViewById(R.id.items_in_list);
+        mMenuEditList = (FloatingActionButton) mRootView.findViewById(R.id.menu_edit_list);
+        mMenuAddItem = (FloatingActionButton) mRootView.findViewById(R.id.menu_add_item);
+        mMenuInviteFriends = (FloatingActionButton) mRootView.findViewById(R.id.menu_invite_friends);
+        mMenuEditList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ActivityMain)getActivity()).openFragmentEditList(mSelectedList,mSelectedListPosition);
+            }
+        });
         mRecyclerLists.setLayoutManager(
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerLists.addItemDecoration(new InsetDecoration(getActivity()));
@@ -85,7 +102,7 @@ public class FragmentItemsInList extends Fragment {
         mLists = MyApplication.provide(getActivity()).getMyLists();
         api = new Apis(getActivity());
         ArrayList<Item> lists = api
-                .getPopularItemsForCategory(mSelectedItem.getId());
+                .getPopularItemsForCategory(mSelectedListPosition );
         mItemsAdapter.setItems(lists);
         mItemsAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,9 +137,9 @@ public class FragmentItemsInList extends Fragment {
     private void setupToolbar(View rootView) {
         mToolbar = (Toolbar) rootView.findViewById(R.id.app_bar);
         mContainerToolbar = (ViewGroup) rootView.findViewById(R.id.container_app_bar);
-        mToolbar.setTitle(mSelectedItem.getName());
+        mToolbar.setTitle(mSelectedList.getName());
         mToolbar.setNavigationIcon(R.drawable.back_arrow);
-        mToolbar.setBackgroundColor(getActivity().getResources().getColor(mSelectedItem.getColor()));
+        mToolbar.setBackgroundColor(getActivity().getResources().getColor(mSelectedList.getColor()));
         mToolbar.setElevation(12);
         ((ActivityMain) getActivity()).setSupportActionBar(mToolbar);
         ((ActivityMain) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,13 +169,13 @@ public class FragmentItemsInList extends Fragment {
         mItemsAdapter.notifyDataSetChanged();
     }
 
-    public void setSelectedItemPosition(int selectedItemPosition) {
-        this.mSelectedItemPosition = selectedItemPosition;
+    public void setSelectedListPosition(int selectedListPosition) {
+        this.mSelectedListPosition = selectedListPosition;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(SELECTED_ITEM, mSelectedItemPosition);
+        outState.putInt(SELECTED_ITEM, mSelectedListPosition);
     }
 }

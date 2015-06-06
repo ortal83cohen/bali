@@ -35,14 +35,15 @@
                 fab:fab_addButtonPlusIconColor="#808080">
             <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"    android:layout_margin="20dp"
+                    android:layout_height="wrap_content" android:layout_margin="20dp"
                     >
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/detailed_action_share"
+                        android:id="@+id/menu_invite_friends"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        fab:fab_title="share"
+                        fab:fab_icon="@drawable/ic_person"
+                        fab:fab_size="mini"
+                        fab:fab_title="Invite friends"
                         android:layout_gravity="center"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="@string/invite_friends" android:layout_marginRight="156dp"
@@ -55,14 +56,16 @@
                     android:layout_height="wrap_content" android:padding="20dp"
                     >
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/detailed_action_favorite"
+                        android:id="@+id/menu_edit_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        fab:fab_title="like"/>
+                        fab:fab_icon="@drawable/ic_person"
+                        fab:fab_size="mini"
+                        fab:fab_title="Edit list"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="@string/edit_list" android:layout_marginRight="188dp"
-                 android:elevation="8dp"
+                          android:elevation="8dp"
                           android:background="@drawable/rounded_corner" android:padding="6dp"
                           android:layout_gravity="left|center_vertical"/>
             </FrameLayout>
@@ -71,10 +74,12 @@
                     android:layout_height="wrap_content"
                     >
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/detailed_action_settings"
+                        android:id="@+id/menu_add_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:layout_gravity="center"
-                        fab:fab_title="settings"/>
+                        fab:fab_icon="@drawable/ic_person"
+                        fab:fab_size="mini"
+                        fab:fab_title="Add item"/>
 
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="@string/add_item" android:layout_marginRight="150dp"
@@ -85,4 +90,5 @@
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     </RelativeLayout>
+
 </LinearLayout>
